@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expert Rent a Car - Iznajmljivanje vozila u Kragujevcu</title>
+<meta name="description" content="Iznajmljivanje vozila u Kragujevcu, kratkoročno i dugoročno. Transparentne cene, redovno održavana vozila, podrška tokom celog perioda korišćenja.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spartan:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#c8a951;
+    --accent-dark:#a8873c;
+    --text:#1c1c1c;
+    --text-light:#5a5a5a;
+    --bg:#ffffff;
+    --bg-off:#faf8f4;
+    --border:#e6e1d6;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Spartan',sans-serif;
+    font-weight:700;
+    line-height:1.2;
+    color:var(--text);
+  }
+
+  p{ color:var(--text-light); }
+
+  a{text-decoration:none;color:inherit;}
+
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:1280px;
+    margin:0 auto;
+    padding-left:24px;
+    padding-right:24px;
+  }
+
+  .section-pad{
+    padding-top:96px;
+    padding-bottom:96px;
+  }
+
+  .section-pad-sm{
+    padding-top:64px;
+    padding-bottom:64px;
+  }
+
+  p.copy, li.copy-li{
+    max-width:65ch;
+  }
+
+  /* BUTTONS */
+  .btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#1c1c1c;
+    font-family:'Spartan',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    padding:16px 32px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    transition:background .2s ease;
+    text-align:center;
+  }
+  .btn:hover{ background:var(--accent-dark); }
+
+  .btn-outline{
+    display:inline-block;
+    background:transparent;
+    color:var(--text);
+    font-family:'Spartan',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    padding:14px 30px;
+    border-radius:8px;
+    border:1px solid var(--border);
+  }
+
+  /* NAVBAR */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
+  }
+
+  .navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:16px;
+    padding-bottom:16px;
+  }
+
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .logo img{ height:44px; width:auto; }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:32px;
+  }
+  .nav-links a{
+    font-family:'Spartan',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--text);
+  }
+  .nav-links a:hover{ color:var(--accent-dark); }
+
+  .nav-cta{ margin-left:8px; }
+
+  .hamburger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:8px;
+  }
+  .hamburger span{
+    display:block;
+    width:26px;
+    height:2px;
+    background:var(--text);
+  }
+
+  .mobile-menu{
+    display:none;
+    flex-direction:column;
+    border-top:1px solid var(--border);
+    background:var(--bg);
+  }
+  .mobile-menu a{
+    font-family:'Spartan',sans-serif;
+    font-weight:600;
+    font-size:16px;
+    padding:16px 24px;
+    border-bottom:1px solid var(--border);
+    color:var(--text);
+  }
+  .mobile-menu .btn{
+    margin:20px 24px;
+    text-align:center;
+  }
+  .mobile-menu.open{ display:flex; }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    background:#0e0e0e;
+    color:#fff;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0.55;
+  }
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 100%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    max-width:720px;
+    padding-top:140px;
+    padding-bottom:140px;
+  }
+  .hero-content h1{
+    color:#fff;
+    font-size:52px;
+    margin-bottom:24px;
+  }
+  .hero-content p{
+    color:#e8e6e0;
+    font-size:18px;
+    max-width:56ch;
+    margin-bottom:36px;
+  }
+
+  /* PROBLEM */
+  .problem-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:start;
+    margin-top:48px;
+  }
+  .problem-item{
+    border-top:1px solid var(--border);
+    padding-top:24px;
+  }
+  .problem-item h3{
+    font-size:18px;
+    margin-bottom:10px;
+  }
+  .problem-item p{
+    max-width:60ch;
+  }
+
+  .eyebrow{
+    font-family:'Spartan',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--accent-dark);
+    margin-bottom:14px;
+  }
+
+  h2{ font-size:36px; margin-bottom:8px; }
+  .section-sub{ max-width:60ch; margin-bottom:8px; }
+
+  /* SOLUTION */
+  .solution{
+    background:var(--bg-off);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .solution-inner{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .placeholder{
+    background:#e3e0d8;
+    border:1px solid var(--border);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#8a8578;
+    font-family:'Spartan',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:0.5px;
+    padding-top:40px;
+    padding-bottom:40px;
+    padding-left:16px;
+    padding-right:16px;
+    min-height:280px;
+  }
+
+  /* CREDIBILITY */
+  .cred-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+    margin-top:48px;
+  }
+  .cred-card{
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding-top:32px;
+    padding-bottom:32px;
+    padding-left:28px;
+    padding-right:28px;
+  }
+  .cred-card svg{ margin-bottom:18px; }
+  .cred-card h3{ font-size:18px; margin-bottom:10px; }
+  .cred-card p{ font-size:15px; }
+
+  /* BENEFITS */
+  .benefits{
+    background:var(--bg-off);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .benefits-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px 48px;
+    margin-top:48px;
+  }
+  .benefit-item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+  }
+  .benefit-item svg{ flex-shrink:0; margin-top:3px; }
+  .benefit-item p{ font-size:16px; color:var(--text); max-width:50ch; }
+
+  /* OFFER */
+  .offer-box{
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding-top:48px;
+    padding-bottom:48px;
+    padding-left:48px;
+    padding-right:48px;
+    margin-top:40px;
+    background:var(--bg-off);
+  }
+  .offer-list{
+    margin-top:24px;
+    margin-bottom:24px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .offer-list div{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .offer-list p{ color:var(--text); font-size:16px; }
+  .offer-note{
+    font-size:15px;
+    color:var(--text-light);
+    margin-bottom:24px;
+    max-width:65ch;
+  }
+  .guarantee{
+    margin-top:40px;
+    border-top:1px solid var(--border);
+    padding-top:32px;
+  }
+  .guarantee h3{ font-size:20px; margin-bottom:10px; }
+
+  /* CTA SECTION */
+  .cta-section{
+    background:#1c1c1c;
+    color:#fff;
+  }
+  .cta-section h2{ color:#fff; }
+  .cta-section p{ color:#cfcac0; max-width:60ch; }
+  .cta-inner{ text-align:center; }
+  .cta-steps{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-top:40px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+  }
+  .cta-step{
+    max-width:260px;
+    text-align:left;
+  }
+  .cta-step .num{
+    font-family:'Spartan',sans-serif;
+    font-weight:800;
+    color:var(--accent);
+    font-size:24px;
+    margin-bottom:8px;
+  }
+  .cta-step p{ color:#cfcac0; font-size:15px; }
+
+  /* WARNING */
+  .warning-box{
+    border:1px solid var(--border);
+    border-left:4px solid var(--accent);
+    border-radius:8px;
+    padding-top:32px;
+    padding-bottom:32px;
+    padding-left:32px;
+    padding-right:32px;
+    margin-top:40px;
+    max-width:70ch;
+  }
+
+  /* FOOTER */
+  footer{
+    background:var(--bg-off);
+    border-top:1px solid var(--border);
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1fr;
+    gap:48px;
+  }
+  .footer-col h4{
+    font-family:'Spartan',sans-serif;
+    font-size:16px;
+    margin-bottom:16px;
+  }
+  .footer-col p, .footer-col a{
+    font-size:15px;
+    color:var(--text-light);
+    display:block;
+    margin-bottom:10px;
+  }
+  .footer-logo img{ height:38px; margin-bottom:16px; }
+  .footer-bottom{
+    border-top:1px solid var(--border);
+    margin-top:48px;
+    padding-top:24px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .footer-bottom p{ font-size:13px; color:var(--text-light); }
+
+  .ps-box{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding-top:28px;
+    padding-bottom:28px;
+    padding-left:28px;
+    padding-right:28px;
+    margin-top:40px;
+  }
+  .ps-box p{ color:var(--text); font-size:15px; }
+  .ps-box strong{ color:var(--text); }
+
+  /* RESPONSIVE */
+  @media (max-width: 991px){
+    .nav-links{ display:none; }
+    .hamburger{ display:flex; }
+    .hero-content h1{ font-size:40px; }
+    .solution-inner{ grid-template-columns:1fr; }
+    .cred-grid{ grid-template-columns:1fr; }
+    .problem-grid{ grid-template-columns:1fr; gap:32px; }
+    .benefits-grid{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr; gap:32px; }
+  }
+
+  @media (max-width: 768px){
+    .wrap{ padding-left:20px; padding-right:20px; }
+    .section-pad{ padding-top:64px; padding-bottom:64px; }
+    h2{ font-size:28px; }
+    .hero-content h1{ font-size:32px; }
+    .hero-content p{ font-size:16px; }
+    .hero-content{ padding-top:90px; padding-bottom:90px; }
+    .offer-box{ padding-left:24px; padding-right:24px; padding-top:32px; padding-bottom:32px; }
+    .cta-steps{ gap:28px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <a href="#" class="logo">
+      <img src="assets/logo.png" alt="Expert Rent a Car logo">
+    </a>
+    <nav class="nav-links">
+      <a href="#problem">Zašto ti treba</a>
+      <a href="#vozila">Vozni park</a>
+      <a href="#ponuda">Ponuda</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="tel:0345005000" class="btn nav-cta">Pozovi za cenu</a>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Otvori meni" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#problem">Zašto ti treba</a>
+    <a href="#vozila">Vozni park</a>
+    <a href="#ponuda">Ponuda</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="tel:0345005000" class="btn">Pozovi za cenu</a>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="assets/slider-2-bg.jpg" alt="Vozilo parkirano u garaži, detalj zadnjeg svetla" class="hero-bg">
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-content">
+      <h1>Iznajmi auto u Kragujevcu i vozi bez brige o skrivenim troškovima</h1>
+      <p>Kratkoročno ili dugoročno, za posao, putovanje ili svaki dan. Zoveš, kažeš kad ti treba vozilo, i dobijaš tačnu cenu i jasan ugovor - bez sitnih slova.</p>
+      <a href="tel:0345005000" class="btn">Pozovi za cenu</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="problem">
+  <div class="wrap">
+    <div class="eyebrow">Poznata situacija</div>
+    <h2>Auto ti treba, a ne znaš kome da veruješ na telefonu</h2>
+    <p class="copy section-sub">Ovako to izgleda kad ti zatreba vozilo u Kragujevcu, bez obzira da li si tu poslom, na putu ili živiš ovde.</p>
+
+    <div class="problem-grid">
+      <div class="problem-item">
+        <h3>Stigneš u grad i tek tad počneš da tražiš auto</h3>
+        <p class="copy">Autobus ili avion te dovede do Kragujevca, i tek tad shvatiš da ti treba vozilo. Zoveš tri firme, svaka ti kaže drugu cenu, a kad stigneš po auto, iskrsnu dodatne stavke o kojima niko nije pominjao na telefonu.</p>
+      </div>
+      <div class="problem-item">
+        <h3>Posao te šalje na sastanke po gradu i okolini</h3>
+        <p class="copy">Tvoje kola su na servisu ili si na terenu bez svog vozila, a treba ti auto od ponedeljka do petka, brzo, bez papirologije koja traje dva dana.</p>
+      </div>
+      <div class="problem-item">
+        <h3>Tvoj auto je u kvaru već treću nedelju</h3>
+        <p class="copy">Bez auta ne stižeš na posao na vreme, ne stižeš po decu, svaki dan planiraš unazad - koga da moliš za prevoz, koliko taksi košta ako računaš svaki dan u nedelji.</p>
+      </div>
+      <div class="problem-item">
+        <h3>Ne znaš šta stoji u ugovoru dok ne potpišeš</h3>
+        <p class="copy">Cena na sajtu je jedna, cena na licu mesta druga, i tek kad vratiš auto vidiš stavke koje niko nije pominjao unapred.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="solution">
+  <div class="wrap section-pad">
+    <div class="solution-inner">
+      <div>
+        <div class="eyebrow">Rešenje</div>
+        <h2>Expert Rent a Car ti to skida s vrata</h2>
+        <p class="copy" style="margin-bottom:16px;">Zoveš, kažeš kad ti treba vozilo i na koliko dugo, i dobijaš konkretnu cenu za tvoj slučaj - ne paušalnu cifru sa sajta koja se promeni kad dođeš po auto.</p>
+        <p class="copy" style="margin-bottom:24px;">Radimo iz Kragujevca, za turiste, poslovne ljude i lokalno stanovništvo, kratkoročno i dugoročno, sa vozilom koje je spremno onog momenta kad ti zatreba.</p>
+        <a href="tel:0345005000" class="btn">Pozovi za cenu</a>
+      </div>
+      <div class="placeholder">FOTOGRAFIJA VOZNOG PARKA</div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="vozila">
+  <div class="wrap">
+    <div class="eyebrow">Zašto baš mi</div>
+    <h2>Zašto da veruješ baš nama</h2>
+    <p class="copy section-sub">Nema razloga da veruješ na reč. Evo tačno kako radimo.</p>
+
+    <div class="cred-grid">
+      <div class="cred-card">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="1.8"><path d="M12 3v18M3 12h18" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
+        <h3>Transparentno poslovanje</h3>
+        <p>Cena koju čuješ na telefonu je cena koju plaćaš. Bez dodatnih stavki koje se pojave kad vratiš vozilo.</p>
+      </div>
+      <div class="cred-card">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="1.8"><path d="M4 12l4 4L20 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Redovno održavana vozila</h3>
+        <p>Svako vozilo prolazi pregled i servis pre nego što ga preuzmeš. Ne sedaš u auto sa nepoznatom istorijom.</p>
+      </div>
+      <div class="cred-card">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="1.8"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg>
+        <h3>Podrška tokom celog perioda</h3>
+        <p>Dok koristiš vozilo, imaš direktnu podršku od nas. Ako nešto zatreba, zoveš i rešavamo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="wrap section-pad">
+    <div class="eyebrow">Šta konkretno dobijaš</div>
+    <h2>Ne dobijaš samo vozilo</h2>
+    <p class="copy section-sub">Dobijaš stvari koje se ne vide na papiru, ali osetiš ih svaki dan dok koristiš auto.</p>
+
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>Ne planiraš prevoz unapred - auto je tu kad ti treba, na dan i sat koji ti odgovara.</p>
+      </div>
+      <div class="benefit-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>Ne brineš da će te nešto iznenaditi na kraju perioda korišćenja - cena je jasna od prve rečenice.</p>
+      </div>
+      <div class="benefit-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>Ne gubiš vreme na papirologiju i čekanje - dogovor traje jedan telefonski poziv.</p>
+      </div>
+      <div class="benefit-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>Voziš vozilo koje je pregledano i servisirano, ne ono što je "nekako još u pogonu".</p>
+      </div>
+      <div class="benefit-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>Rešavaš prevoz za posao, porodicu ili putovanje istim pozivom, bez traženja po više firmi.</p>
+      </div>
+      <div class="benefit-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>Ne moraš da objašnjavaš firmi ili porodici zašto kasniš samo zato što nemaš auto tog dana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="ponuda">
+  <div class="wrap">
+    <div class="eyebrow">Ponuda</div>
+    <h2>Šta tačno dobijaš kad pozoveš</h2>
+    <p class="copy section-sub">Cena zavisi od trajanja i tipa vozila, zato je dajemo na telefonu, za tvoj konkretan slučaj, ne kao jednu cifru za sve.</p>
+
+    <div class="offer-box">
+      <h3 style="font-size:20px;margin-bottom:8px;">U dogovor ulazi</h3>
+      <div class="offer-list">
+        <div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Vozilo iz našeg voznog parka, izabrano prema tome za šta ti treba i na koliko dugo</p>
+        </div>
+        <div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Redovan servis i pregled vozila tokom celog perioda iznajmljivanja</p>
+        </div>
+        <div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Stručnu podršku dok koristiš vozilo - jedan poziv i rešavamo</p>
+        </div>
+        <div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Jasan ugovor, bez stavki koje se pojave kasnije</p>
+        </div>
+      </div>
+      <p class="offer-note">Ako si stalni klijent ili se vraćaš kod nas po vozilo drugi put, dogovaramo posebne uslove za taj termin.</p>
+
+      <div class="guarantee">
+        <h3>Garancija bez skrivenih troškova</h3>
+        <p class="copy">U ceni koju čuješ na telefonu nema dodatnih stavki koje se pojave kasnije. Ono što ti kažem pre nego što preuzmeš vozilo, to i platiš na kraju.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap section-pad cta-inner">
+    <div class="eyebrow" style="color:var(--accent);">Sledeći korak</div>
+    <h2>Pozovi i reci mi kad ti treba vozilo</h2>
+    <p style="margin:0 auto;">Bez formulara koje treba popuniti, bez čekanja na odgovor mejlom. Jedan poziv i imaš cenu i termin preuzimanja.</p>
+
+    <div class="cta-steps">
+      <div class="cta-step">
+        <div class="num">1</div>
+        <p>Pozoveš i kažeš kad ti treba vozilo i na koliko dugo</p>
+      </div>
+      <div class="cta-step">
+        <div class="num">2</div>
+        <p>Dobiješ tačnu cenu za tvoj slučaj i dogovorimo termin preuzimanja</p>
+      </div>
+      <div class="cta-step">
+        <div class="num">3</div>
+        <p>Preuzmeš vozilo i voziš, bez brige o dodatnim troškovima</p>
+      </div>
+    </div>
+
+    <a href="tel:0345005000" class="btn">Pozovi za cenu</a>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="wrap">
+    <div class="eyebrow">Ako ostaviš za kasnije</div>
+    <h2>Za 6 meseci ćeš rešavati istu situaciju</h2>
+    <div class="warning-box">
+      <p class="copy">Ako ovo ostaviš za sledeći put kad ti auto zatreba, opet ćeš zvati unaokolo i nadati se da cena koju čuješ ostaje ista kad dođeš po vozilo. Ništa se ne menja dok ne pozoveš i dogovoriš uslove koje razumeš od prve rečenice.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="kontakt">
+  <div class="wrap section-pad-sm">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="assets/logo.png" alt="Expert Rent a Car logo">
+        </div>
+        <p>Iznajmljivanje vozila u Kragujevcu, kratkoročno i dugoročno. Bez skrivenih troškova.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <a href="tel:0345005000">034/500-500</a>
+        <a href="mailto:info@expertrentacar.rs">info@expertrentacar.rs</a>
+        <p>Kragujevac, Srbija</p>
+      </div>
+      <div class="footer-col">
+        <h4>Stranica</h4>
+        <a href="#problem">Zašto ti treba</a>
+        <a href="#vozila">Vozni park</a>
+        <a href="#ponuda">Ponuda</a>
+      </div>
+    </div>
+
+    <div class="ps-box">
+      <p><strong>P.S.</strong> Pozovi i reci mi kad ti treba vozilo, kratko ili duže - cena je jasna od prve rečenice, bez skrivenih troškova. Expert Rent a Car je u Kragujevcu, na telefonu, spreman da ti pripremi auto za tvoj termin.</p>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Expert Rent a Car. Sva prava zadržana.</p>
+      <p>Kragujevac, Srbija</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var btn = document.getElementById('hamburgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function(){
+    var isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  var mobileLinks = menu.querySelectorAll('a');
+  mobileLinks.forEach(function(link){
+    link.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
