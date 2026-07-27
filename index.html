@@ -10,8 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --accent:#c8a951;
-    --accent-dark:#a8873c;
+    --accent:#004c36;
+    --accent-dark:#003526;
+    --accent-light:#3fae83; /* za tamne pozadine, gde tamnozelena nema kontrast */
     --text:#1c1c1c;
     --text-light:#5a5a5a;
     --bg:#ffffff;
@@ -73,7 +74,7 @@
   .btn{
     display:inline-block;
     background:var(--accent);
-    color:#1c1c1c;
+    color:#ffffff;
     font-family:'Spartan',sans-serif;
     font-weight:700;
     font-size:16px;
@@ -158,13 +159,14 @@
     color:#fff;
     transition:color .3s ease;
   }
-  .nav-links a:hover{ color:var(--accent); }
+  .nav-links a:hover{ color:var(--accent-light); }
 
   header.scrolled .nav-links a{ color:var(--text); }
   header.scrolled .nav-links a:hover{ color:var(--accent-dark); }
 
   .nav-links .nav-cta,
-  header.scrolled .nav-links .nav-cta{ color:var(--text); }
+  header.scrolled .nav-links .nav-cta{ color:#ffffff; }
+  .nav-links .nav-cta:hover{ color:#ffffff; }
 
   .nav-cta{ margin-left:8px; }
 
@@ -418,7 +420,7 @@
   .cta-step .num{
     font-family:'Spartan',sans-serif;
     font-weight:800;
-    color:var(--accent);
+    color:var(--accent-light);
     font-size:24px;
     margin-bottom:8px;
   }
@@ -600,17 +602,17 @@
 
     <div class="cred-grid">
       <div class="cred-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="1.8"><path d="M12 3v18M3 12h18" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="1.8"><path d="M12 3v18M3 12h18" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
         <h3>Transparentno poslovanje</h3>
         <p>Cena koju čuješ na telefonu je cena koju plaćaš. Bez dodatnih stavki koje se pojave kad vratiš vozilo.</p>
       </div>
       <div class="cred-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="1.8"><path d="M4 12l4 4L20 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="1.8"><path d="M4 12l4 4L20 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Redovno održavana vozila</h3>
         <p>Svako vozilo prolazi pregled i servis pre nego što ga preuzmeš. Ne sedaš u auto sa nepoznatom istorijom.</p>
       </div>
       <div class="cred-card">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="1.8"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="1.8"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg>
         <h3>Podrška tokom celog perioda</h3>
         <p>Dok koristiš vozilo, imaš direktnu podršku od nas. Ako nešto zatreba, zoveš i rešavamo.</p>
       </div>
@@ -626,27 +628,27 @@
 
     <div class="benefits-grid">
       <div class="benefit-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <p>Ne planiraš prevoz unapred - auto je tu kad ti treba, na dan i sat koji ti odgovara.</p>
       </div>
       <div class="benefit-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <p>Ne brineš da će te nešto iznenaditi na kraju perioda korišćenja - cena je jasna od prve rečenice.</p>
       </div>
       <div class="benefit-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <p>Ne gubiš vreme na papirologiju i čekanje - dogovor traje jedan telefonski poziv.</p>
       </div>
       <div class="benefit-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <p>Voziš vozilo koje je pregledano i servisirano, ne ono što je "nekako još u pogonu".</p>
       </div>
       <div class="benefit-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <p>Rešavaš prevoz za posao, porodicu ili putovanje istim pozivom, bez traženja po više firmi.</p>
       </div>
       <div class="benefit-item">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <p>Ne moraš da objašnjavaš firmi ili porodici zašto kasniš samo zato što nemaš auto tog dana.</p>
       </div>
     </div>
@@ -663,19 +665,19 @@
       <h3 style="font-size:20px;margin-bottom:8px;">U dogovor ulazi</h3>
       <div class="offer-list">
         <div>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <p>Vozilo iz našeg voznog parka, izabrano prema tome za šta ti treba i na koliko dugo</p>
         </div>
         <div>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <p>Redovan servis i pregled vozila tokom celog perioda iznajmljivanja</p>
         </div>
         <div>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <p>Stručnu podršku dok koristiš vozilo - jedan poziv i rešavamo</p>
         </div>
         <div>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a951" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#004c36" stroke-width="2" style="flex-shrink:0;margin-top:2px;"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <p>Jasan ugovor, bez stavki koje se pojave kasnije</p>
         </div>
       </div>
@@ -691,7 +693,7 @@
 
 <section class="cta-section">
   <div class="wrap section-pad cta-inner">
-    <div class="eyebrow" style="color:var(--accent);">Sledeći korak</div>
+    <div class="eyebrow" style="color:var(--accent-light);">Sledeći korak</div>
     <h2>Pozovi i reci mi kad ti treba vozilo</h2>
     <p style="margin:0 auto;">Bez formulara koje treba popuniti, bez čekanja na odgovor mejlom. Jedan poziv i imaš cenu i termin preuzimanja.</p>
 
