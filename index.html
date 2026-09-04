@@ -391,7 +391,7 @@
     overflow:hidden;
     background:var(--ink-soft);
     padding-top:64px;
-    padding-bottom:112px;
+    padding-bottom:64px;
     padding-left:48px;
     padding-right:48px;
   }
@@ -433,98 +433,6 @@
     color:var(--white);
     font-size:16px;
   }
-
-  /* traka za pretragu preko heroja */
-  .search-card{
-    position:relative;
-    z-index:3;
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:24px;
-    margin-top:-64px;
-    margin-left:32px;
-    margin-right:32px;
-    padding-top:24px;
-    padding-bottom:24px;
-    padding-left:24px;
-    padding-right:24px;
-  }
-  .search-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    margin-bottom:20px;
-    flex-wrap:wrap;
-  }
-  .search-tabs{ display:flex; gap:8px; flex-wrap:wrap; }
-  .search-tab{
-    font-family:'Urbanist',sans-serif;
-    font-weight:700;
-    font-size:16px;
-    color:var(--ink);
-    border-radius:12px;
-    padding-top:8px;
-    padding-bottom:8px;
-    padding-left:20px;
-    padding-right:20px;
-    border:1px solid transparent;
-    background:transparent;
-    cursor:pointer;
-  }
-  .search-tab.active{ background:var(--green); border-color:var(--green-dark); }
-  .search-help{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-size:12px;
-    color:var(--muted);
-  }
-  .search-fields{
-    display:grid;
-    grid-template-columns:repeat(4,1fr) auto;
-    align-items:center;
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding-top:8px;
-    padding-bottom:8px;
-    padding-left:8px;
-    padding-right:8px;
-  }
-  .field{
-    padding-top:12px;
-    padding-bottom:12px;
-    padding-left:16px;
-    padding-right:16px;
-    border-right:1px solid var(--line);
-  }
-  .field label{
-    display:block;
-    font-size:12px;
-    color:var(--muted);
-    margin-bottom:4px;
-  }
-  .field .val{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-family:'Urbanist',sans-serif;
-    font-weight:700;
-    font-size:16px;
-    color:var(--ink);
-  }
-  .field input{
-    font-family:'Urbanist',sans-serif;
-    font-weight:700;
-    font-size:16px;
-    color:var(--ink);
-    border:none;
-    outline:none;
-    background:transparent;
-    width:100%;
-    min-width:0;
-  }
-  .search-fields .btn{ margin-left:16px; }
 
   /* ---------- MARKE ---------- */
   .brand-row{
@@ -931,72 +839,6 @@
   .rev-person span{ font-size:12px; color:var(--muted); }
   .stars{ display:flex; gap:4px; flex-shrink:0; }
 
-  /* ---------- SAVETI ---------- */
-  .news-split{
-    display:grid;
-    grid-template-columns:1.2fr 0.8fr;
-    gap:24px;
-  }
-  .news-big{
-    position:relative;
-    border-radius:24px;
-    overflow:hidden;
-    min-height:400px;
-  }
-  .news-big .ph{ position:absolute; inset:0; border-radius:0; border:0; }
-  .news-big::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.72) 100%);
-    z-index:1;
-  }
-  .news-big-txt{
-    position:absolute;
-    left:32px;
-    right:32px;
-    bottom:32px;
-    z-index:2;
-  }
-  .news-big-txt h3{ font-size:24px; color:var(--white); margin-bottom:8px; }
-  .news-big-txt p{ font-size:12px; color:#d6d7d8; }
-  .news-list{ display:flex; flex-direction:column; gap:16px; }
-  .news-item{
-    display:flex;
-    gap:16px;
-    align-items:center;
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding-top:16px;
-    padding-bottom:16px;
-    padding-left:16px;
-    padding-right:16px;
-  }
-  .news-item .ph{ flex:0 0 96px; min-height:80px; border-radius:12px; }
-  .news-item h3{ font-size:16px; margin-bottom:4px; }
-  .news-item p{ font-size:12px; color:var(--muted); }
-
-  /* ---------- USKORO ---------- */
-  .soon-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:24px;
-  }
-  .soon-card{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding-top:16px;
-    padding-bottom:16px;
-    padding-left:16px;
-    padding-right:16px;
-    text-align:center;
-  }
-  .soon-card .ph{ min-height:160px; border-radius:12px; margin-bottom:16px; }
-  .soon-card h3{ font-size:16px; }
-  .soon-card p{ font-size:12px; color:var(--muted); }
-
   /* ---------- ZELENA TRAKA ---------- */
   .app-split{
     display:grid;
@@ -1126,7 +968,6 @@
     .car-grid, .car-grid-4{ grid-template-columns:repeat(2,1fr); }
     .type-grid{ grid-template-columns:repeat(2,1fr); }
     .svc-row{ grid-template-columns:repeat(3,1fr); }
-    .soon-grid{ grid-template-columns:repeat(2,1fr); }
     .foot-grid{ grid-template-columns:1fr 1fr 1fr; }
     .steps{ grid-template-columns:1fr 1fr; }
   }
@@ -1139,10 +980,7 @@
     h2{ font-size:32px; }
     .hero-card{ min-height:520px; padding-left:32px; padding-right:32px; }
     .hero-content h1{ font-size:40px; }
-    .search-fields{ grid-template-columns:1fr 1fr; }
-    .search-fields .btn{ grid-column:span 2; margin-left:0; margin-top:8px; }
-    .field{ border-right:0; border-bottom:1px solid var(--line); }
-    .split, .calc-split, .app-split, .news-split{ grid-template-columns:1fr; gap:32px; }
+    .split, .calc-split, .app-split{ grid-template-columns:1fr; gap:32px; }
     .stats{ grid-template-columns:1fr 1fr; gap:24px; }
     .banner-2{ grid-template-columns:1fr; }
     .rev-grid{ grid-template-columns:1fr; }
@@ -1168,22 +1006,12 @@
       padding-left:24px;
       padding-right:24px;
       padding-top:48px;
-      padding-bottom:96px;
+      padding-bottom:48px;
     }
     .hero-content h1{ font-size:32px; }
     .hero-points{ gap:12px; flex-direction:column; }
-    .search-card{
-      margin-left:0;
-      margin-right:0;
-      margin-top:-48px;
-      border-radius:16px;
-      padding-left:16px;
-      padding-right:16px;
-    }
-    .search-fields{ grid-template-columns:1fr; }
-    .search-fields .btn{ grid-column:span 1; }
     .brand-row{ grid-template-columns:1fr 1fr; }
-    .car-grid, .car-grid-4, .type-grid, .svc-row, .soon-grid{ grid-template-columns:1fr; }
+    .car-grid, .car-grid-4, .type-grid, .svc-row{ grid-template-columns:1fr; }
     .steps{ grid-template-columns:1fr; }
     .check-cols{ grid-template-columns:1fr; }
     .calc-fields{ grid-template-columns:1fr; }
@@ -1266,7 +1094,7 @@
   </div>
 </header>
 
-<!-- HERO + TRAKA ZA UPIT -->
+<!-- HERO -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-card">
@@ -1280,54 +1108,6 @@
           <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Redovno održavana vozila</li>
           <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Podrška tokom celog perioda</li>
         </ul>
-      </div>
-    </div>
-
-    <div class="search-card">
-      <div class="search-top">
-        <div class="search-tabs">
-          <button type="button" class="search-tab active">Sva vozila</button>
-          <button type="button" class="search-tab">Kratkoročno</button>
-          <button type="button" class="search-tab">Dugoročno</button>
-        </div>
-        <a href="tel:0345005000" class="search-help">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
-          Treba ti pomoć?
-        </a>
-      </div>
-      <div class="search-fields">
-        <div class="field">
-          <label for="f-preuzimanje">Mesto preuzimanja</label>
-          <div class="val">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            <input id="f-preuzimanje" type="text" value="Kragujevac">
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-vracanje">Mesto vraćanja</label>
-          <div class="val">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            <input id="f-vracanje" type="text" value="Kragujevac">
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-od">Datum preuzimanja</label>
-          <div class="val">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
-            <input id="f-od" type="text" placeholder="Izaberi datum">
-          </div>
-        </div>
-        <div class="field">
-          <label for="f-do">Datum vraćanja</label>
-          <div class="val">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
-            <input id="f-do" type="text" placeholder="Izaberi datum">
-          </div>
-        </div>
-        <a href="tel:0345005000" class="btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg>
-          Pronađi vozilo
-        </a>
       </div>
     </div>
   </div>
@@ -1976,98 +1756,6 @@
   </div>
 </section>
 
-<!-- SAVETI -->
-<section class="section-pad">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Saveti pre iznajmljivanja</h2>
-        <p>Šta da proveriš pre nego što potpišeš ugovor</p>
-      </div>
-      <div class="sec-actions">
-        <a href="tel:0345005000" class="btn btn-sm">
-          Vidi sve
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="news-split">
-      <a href="#" class="news-big">
-        <div class="ph">FOTOGRAFIJA ZA GLAVNI TEKST</div>
-        <div class="news-big-txt">
-          <h3>NASLOV GLAVNOG TEKSTA</h3>
-          <p>DATUM OBJAVE</p>
-        </div>
-      </a>
-      <div class="news-list">
-        <a href="#" class="news-item">
-          <div class="ph">SLIKA</div>
-          <div>
-            <h3>NASLOV TEKSTA 1</h3>
-            <p>DATUM OBJAVE</p>
-          </div>
-        </a>
-        <a href="#" class="news-item">
-          <div class="ph">SLIKA</div>
-          <div>
-            <h3>NASLOV TEKSTA 2</h3>
-            <p>DATUM OBJAVE</p>
-          </div>
-        </a>
-        <a href="#" class="news-item">
-          <div class="ph">SLIKA</div>
-          <div>
-            <h3>NASLOV TEKSTA 3</h3>
-            <p>DATUM OBJAVE</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- USKORO -->
-<section class="section-pad">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Uskoro u ponudi</h2>
-        <p>Vozila koja ulaze u vozni park</p>
-      </div>
-      <div class="sec-actions">
-        <button type="button" class="btn-round" aria-label="Prethodno">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button type="button" class="btn-round" aria-label="Sledeće">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="soon-grid">
-      <div class="soon-card">
-        <div class="ph">FOTOGRAFIJA VOZILA</div>
-        <h3>NAZIV VOZILA</h3>
-        <p>DATUM DOLASKA</p>
-      </div>
-      <div class="soon-card">
-        <div class="ph">FOTOGRAFIJA VOZILA</div>
-        <h3>NAZIV VOZILA</h3>
-        <p>DATUM DOLASKA</p>
-      </div>
-      <div class="soon-card">
-        <div class="ph">FOTOGRAFIJA VOZILA</div>
-        <h3>NAZIV VOZILA</h3>
-        <p>DATUM DOLASKA</p>
-      </div>
-      <div class="soon-card">
-        <div class="ph">FOTOGRAFIJA VOZILA</div>
-        <h3>NAZIV VOZILA</h3>
-        <p>DATUM DOLASKA</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ZELENA TRAKA -->
 <section class="section-pad">
   <div class="wrap">
@@ -2196,13 +1884,6 @@
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive:true });
-
-  document.querySelectorAll('.search-tab').forEach(function(tab){
-    tab.addEventListener('click', function(){
-      document.querySelectorAll('.search-tab').forEach(function(t){ t.classList.remove('active'); });
-      tab.classList.add('active');
-    });
-  });
 </script>
 
 </body>
