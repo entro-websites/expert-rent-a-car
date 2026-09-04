@@ -374,59 +374,88 @@
   }
   .mobile-menu.open{ display:flex; }
 
-  /* ---------- HERO ---------- */
-  .hero{ padding-top:24px; padding-bottom:96px; }
-  .hero-card{
-    position:relative;
-    display:flex;
+  /* ---------- HERO (pozadina od ivice do ivice, sadrzaj u kontejneru) ---------- */
+  .hero{
+    background:var(--surface);
+    padding-top:96px;
+    padding-bottom:96px;
+    text-align:center;
+  }
+  .hero-badge{
+    display:inline-flex;
     align-items:center;
-    min-height:600px;
-    border-radius:24px;
-    overflow:hidden;
-    background:var(--ink-soft);
-    padding-top:64px;
-    padding-bottom:64px;
-    padding-left:48px;
-    padding-right:48px;
-  }
-  .hero-bg{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:0.6;
-  }
-  .hero-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 100%);
-  }
-  .hero-content{ position:relative; z-index:2; max-width:800px; }
-  .hero-eyebrow{
+    gap:12px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:64px;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left:8px;
+    padding-right:20px;
     font-family:'Urbanist',sans-serif;
     font-weight:700;
     font-size:16px;
-    color:var(--green);
-    margin-bottom:16px;
-  }
-  .hero-content h1{
-    color:var(--white);
-    font-size:64px;
+    color:var(--ink);
     margin-bottom:32px;
   }
-  .hero-points{
-    display:flex;
-    flex-wrap:wrap;
-    gap:32px;
+  .hero-avatars{ display:flex; align-items:center; }
+  .hero-avatars span{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--surface-2);
+    border:2px solid var(--white);
+    margin-right:-12px;
   }
-  .hero-points li{
+  .hero-avatars span:last-child{ margin-right:0; }
+  .hero-badge svg{ flex-shrink:0; }
+
+  .hero h1{
+    font-size:64px;
+    max-width:20ch;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:24px;
+  }
+  .hero h1 .soft{
+    color:var(--muted);
+    font-weight:600;
+  }
+  .hero-sub{
+    font-size:16px;
+    color:var(--muted);
+    max-width:64ch;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:32px;
+  }
+
+  /* modifikatori dugmeta: pilula i krug sa ikonicom */
+  .btn-pill{ border-radius:64px; padding-right:8px; }
+  .btn-pill .ico{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--green);
     display:flex;
     align-items:center;
-    gap:12px;
-    color:var(--white);
-    font-size:16px;
+    justify-content:center;
+    flex-shrink:0;
   }
+
+  .hero-media{
+    margin-top:64px;
+    border-radius:24px;
+    overflow:hidden;
+    background:var(--surface-2);
+  }
+  .hero-media img{
+    width:100%;
+    height:480px;
+    object-fit:cover;
+  }
+
 
   /* ---------- MARKE ---------- */
   .brand-row{
@@ -1142,8 +1171,8 @@
     .hamburger{ display:flex; }
     .topbar-mid, .topbar-right{ display:none; }
     h2{ font-size:32px; }
-    .hero-card{ min-height:520px; padding-left:32px; padding-right:32px; }
-    .hero-content h1{ font-size:40px; }
+    .hero h1{ font-size:40px; }
+    .hero-media img{ height:360px; }
     .split, .calc-split{ grid-template-columns:1fr; gap:32px; }
     .stats{ grid-template-columns:1fr 1fr; gap:24px; }
     .banner-2{ grid-template-columns:1fr; }
@@ -1164,17 +1193,10 @@
     }
     h2{ font-size:28px; }
     .sec-head{ flex-direction:column; align-items:flex-start; }
-    .hero{ padding-bottom:64px; }
-    .hero-card{
-      border-radius:16px;
-      min-height:440px;
-      padding-left:24px;
-      padding-right:24px;
-      padding-top:48px;
-      padding-bottom:48px;
-    }
-    .hero-content h1{ font-size:32px; }
-    .hero-points{ gap:12px; flex-direction:column; }
+    .hero{ padding-top:64px; padding-bottom:64px; }
+    .hero h1{ font-size:32px; }
+    .hero-media{ margin-top:40px; border-radius:16px; }
+    .hero-media img{ height:280px; }
     .brand-row{ grid-template-columns:1fr 1fr; }
     .car-grid, .car-grid-4, .type-grid, .svc-row{ grid-template-columns:1fr; }
     .steps{ grid-template-columns:1fr; }
@@ -1263,18 +1285,25 @@
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-card">
-      <img src="assets/slider-2-bg.jpg" alt="Vozilo parkirano u garaži, detalj zadnjeg svetla" class="hero-bg">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p class="hero-eyebrow">Rent a car Kragujevac</p>
-        <h1>Treba ti auto?<br>Na pravom si mestu.</h1>
-        <ul class="hero-points">
-          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Bez skrivenih troškova</li>
-          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Redovno održavana vozila</li>
-          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Podrška tokom celog perioda</li>
-        </ul>
-      </div>
+    <div class="hero-badge">
+      <span class="hero-avatars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5edd5b" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Bez skrivenih troškova
+    </div>
+
+    <h1>Treba ti auto? <span class="soft">Iznajmi ga u Kragujevcu za jedan poziv</span></h1>
+
+    <p class="hero-sub">Kratkoročno ili dugoročno, za posao, put ili svaki dan. Kažeš kad ti treba vozilo, dobijaš tačnu cenu i jasan ugovor - bez sitnih slova.</p>
+
+    <a href="tel:0345005000" class="btn btn-pill">
+      Pozovi za cenu
+      <span class="ico">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </a>
+
+    <div class="hero-media">
+      <img src="assets/slider-2-bg.jpg" alt="Vozilo parkirano u garaži, detalj zadnjeg svetla">
     </div>
   </div>
 </section>
