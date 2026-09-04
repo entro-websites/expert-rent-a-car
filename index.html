@@ -12,15 +12,19 @@
   :root{
     --green:#70f46d;
     --green-dark:#5edd5b;
-    --green-soft:#e4fde3;
+    --green-soft:#d8f4db;
+    --blue-soft:#a8e2ef;
+    --yellow-soft:#ffdc88;
     --ink:#000000;
     --ink-soft:#1e1e1e;
     --text:#575756;
     --muted:#8e8e8e;
     --line:#dde1de;
+    --line-dark:#313131;
     --surface:#f2f4f6;
     --surface-2:#e4e6e8;
     --dark:#171717;
+    --dark-2:#1e1e1e;
     --white:#ffffff;
   }
 
@@ -28,7 +32,6 @@
 
   html{scroll-behavior:smooth;}
 
-  /* fiksni navbar ne sme da prekrije sekciju na koju se skroluje */
   section[id], footer[id]{ scroll-margin-top:96px; }
 
   body{
@@ -49,10 +52,9 @@
   }
 
   p{ color:var(--text); }
-
-  a{text-decoration:none;color:inherit;}
-
-  img{max-width:100%;display:block;}
+  a{ text-decoration:none; color:inherit; }
+  img{ max-width:100%; display:block; }
+  ul{ list-style:none; }
 
   /* JEDINI nosilac horizontalnog paddinga */
   .wrap{
@@ -68,11 +70,8 @@
     padding-bottom:96px;
   }
 
-  p.copy, li.copy-li{
-    max-width:65ch;
-  }
+  /* ---------- ZAJEDNICKI ELEMENTI ---------- */
 
-  /* BLOKOVI - sve unutar kontejnera, nista full-bleed */
   .block{
     border-radius:24px;
     padding-top:64px;
@@ -82,11 +81,12 @@
   }
   .block-surface{ background:var(--surface); }
   .block-dark{ background:var(--dark); }
+  .block-green{ background:var(--green-soft); }
 
-  /* BUTTONS */
   .btn{
     display:inline-flex;
     align-items:center;
+    justify-content:center;
     gap:8px;
     background:var(--green);
     color:var(--ink);
@@ -102,13 +102,49 @@
     border:1px solid var(--green-dark);
     cursor:pointer;
     transition:background .2s ease;
-    text-align:center;
   }
   .btn:hover{ background:var(--green-dark); }
   .btn svg{ flex-shrink:0; }
 
-  /* EYEBROW CHIP */
-  .eyebrow{
+  .btn-sm{
+    font-size:12px;
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .btn-white{
+    background:var(--white);
+    border-color:var(--line);
+    color:var(--ink);
+  }
+  .btn-white:hover{ background:var(--surface); }
+
+  .btn-ico{
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    padding:0;
+    flex-shrink:0;
+  }
+
+  .btn-round{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    padding:0;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--ink);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+  .btn-round:hover{ background:var(--green); border-color:var(--green-dark); }
+
+  .chip{
     display:inline-flex;
     align-items:center;
     gap:8px;
@@ -122,208 +158,57 @@
     font-family:'Urbanist',sans-serif;
     font-weight:700;
     font-size:12px;
-    letter-spacing:1px;
-    text-transform:uppercase;
     color:var(--ink);
-    margin-bottom:20px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:var(--green);
-  }
-  .eyebrow-dark{
-    background:transparent;
-    border-color:rgba(255,255,255,0.24);
-    color:var(--white);
-  }
-
-  h2{ font-size:40px; margin-bottom:12px; }
-  .section-sub{ max-width:60ch; margin-bottom:8px; color:var(--muted); }
-
-  /* NAVBAR */
-  header{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:100;
-    background:var(--white);
-    border-bottom:1px solid var(--line);
-  }
-
-  .navbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding-top:16px;
-    padding-bottom:16px;
-    transition:padding .3s ease;
-  }
-
-  header.scrolled .navbar{
-    padding-top:12px;
-    padding-bottom:12px;
-  }
-
-  .logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  .logo img{
-    height:56px;
-    width:auto;
-    transition:height .3s ease;
-  }
-  header.scrolled .logo img{ height:48px; }
-
-  .nav-links{
-    display:flex;
-    align-items:center;
-    gap:32px;
-  }
-  .nav-links a{
-    font-family:'Urbanist',sans-serif;
-    font-weight:600;
-    font-size:16px;
-    color:var(--ink);
-    transition:color .2s ease;
-  }
-  .nav-links a:hover{ color:var(--green-dark); }
-  .nav-links .nav-cta:hover{ color:var(--ink); }
-  .nav-cta{ margin-left:8px; }
-
-  .hamburger{
-    display:none;
-    flex-direction:column;
-    gap:4px;
-    background:none;
-    border:none;
-    cursor:pointer;
-    padding:8px;
-  }
-  .hamburger span{
-    display:block;
-    width:24px;
-    height:2px;
-    background:var(--ink);
-  }
-
-  .mobile-menu{
-    display:none;
-    flex-direction:column;
-    border-top:1px solid var(--line);
-    background:var(--white);
-  }
-  .mobile-menu a{
-    font-family:'Urbanist',sans-serif;
-    font-weight:600;
-    font-size:16px;
-    padding-top:16px;
-    padding-bottom:16px;
-    padding-left:24px;
-    padding-right:24px;
-    border-bottom:1px solid var(--line);
-    color:var(--ink);
-  }
-  .mobile-menu .btn{
-    margin-top:20px;
-    margin-bottom:20px;
-    margin-left:24px;
-    margin-right:24px;
-    justify-content:center;
-  }
-  .mobile-menu.open{ display:flex; }
-
-  /* HERO - kartica unutar kontejnera */
-  .hero{
-    padding-top:184px; /* 88px fiksni header + 96px razmak sekcije */
-    padding-bottom:96px;
-  }
-  .hero-card{
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:640px;
-    border-radius:24px;
-    overflow:hidden;
-    background:var(--ink-soft);
-  }
-  .hero-bg{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:0.55;
-  }
-  .hero-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.72) 100%);
-  }
-  .hero-content{
-    position:relative;
-    z-index:2;
-    max-width:820px;
-    text-align:center;
-    padding-top:64px;
-    padding-bottom:64px;
-    padding-left:32px;
-    padding-right:32px;
-  }
-  .hero-content h1{
-    color:var(--white);
-    font-size:64px;
     margin-bottom:24px;
   }
-  .hero-content p{
-    color:#e4e6e8;
-    font-size:20px;
-    max-width:56ch;
+
+  .tag{
+    display:inline-flex;
+    align-items:center;
+    background:var(--surface);
+    border-radius:12px;
+    padding-top:4px;
+    padding-bottom:4px;
+    padding-left:12px;
+    padding-right:12px;
+    font-family:'Urbanist',sans-serif;
+    font-weight:700;
+    font-size:12px;
+    color:var(--ink);
+  }
+
+  /* zaglavlje sekcije: naslov levo, akcija desno */
+  .sec-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:32px;
+  }
+  h2{ font-size:40px; }
+  .sec-head p{ color:var(--muted); font-size:16px; margin-top:8px; }
+  .sec-actions{ display:flex; gap:12px; flex-shrink:0; }
+
+  .sec-head-center{
+    text-align:center;
+    max-width:640px;
     margin-left:auto;
     margin-right:auto;
-    margin-bottom:36px;
+    margin-bottom:48px;
   }
-  .hero-content .btn{ justify-content:center; }
+  .over{
+    font-family:'Urbanist',sans-serif;
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .over-green{ color:var(--green-dark); }
 
-  /* PROBLEM */
-  .problem-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:24px;
-    align-items:stretch;
-    margin-top:48px;
-  }
-  .problem-item{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding-top:32px;
-    padding-bottom:32px;
-    padding-left:32px;
-    padding-right:32px;
-  }
-  .problem-item h3{
-    font-size:20px;
-    margin-bottom:12px;
-  }
-  .problem-item p{
-    max-width:60ch;
-  }
-
-  /* SOLUTION */
-  .solution-inner{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:56px;
-    align-items:center;
-  }
-  .placeholder{
+  /* sivi placeholder blok */
+  .ph{
     background:var(--surface-2);
     border:1px solid var(--line);
     border-radius:16px;
@@ -336,55 +221,13 @@
     font-weight:700;
     font-size:12px;
     letter-spacing:1px;
-    padding-top:40px;
-    padding-bottom:40px;
+    text-transform:uppercase;
     padding-left:16px;
     padding-right:16px;
-    min-height:320px;
+    padding-top:16px;
+    padding-bottom:16px;
   }
-
-  /* CREDIBILITY */
-  .cred-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-    margin-top:48px;
-  }
-  .cred-card{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding-top:32px;
-    padding-bottom:32px;
-    padding-left:32px;
-    padding-right:32px;
-  }
-  .icon-box{
-    width:56px;
-    height:56px;
-    border-radius:16px;
-    background:var(--green);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:24px;
-  }
-  .cred-card h3{ font-size:20px; margin-bottom:12px; }
-  .cred-card p{ font-size:16px; }
-
-  /* BENEFITS */
-  .benefits-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:24px 48px;
-    margin-top:48px;
-  }
-  .benefit-item{
-    display:flex;
-    gap:16px;
-    align-items:flex-start;
-  }
-  .benefit-item p{ font-size:16px; color:var(--ink-soft); max-width:50ch; }
+  .ph-flat{ border-radius:0; border:0; }
 
   /* zeleni krug sa kvacicom */
   .check{
@@ -393,137 +236,663 @@
     height:24px;
     border-radius:50%;
     background:var(--green);
-    display:flex;
+    display:inline-flex;
     align-items:center;
     justify-content:center;
-    margin-top:4px;
   }
+  .check-list{ display:flex; flex-direction:column; gap:16px; }
+  .check-list li{ display:flex; gap:12px; align-items:flex-start; }
+  .check-list span.t{ font-size:16px; color:var(--ink-soft); }
 
-  /* OFFER */
-  .offer-box{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:24px;
-    padding-top:48px;
-    padding-bottom:48px;
-    padding-left:48px;
-    padding-right:48px;
-    margin-top:48px;
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    background:var(--dark);
+    color:#afafaf;
+    font-size:12px;
   }
-  .offer-box h3{ font-size:24px; margin-bottom:8px; }
-  .offer-list{
-    margin-top:24px;
-    margin-bottom:24px;
+  .topbar-in{
     display:flex;
-    flex-direction:column;
-    gap:16px;
-  }
-  .offer-list div{
-    display:flex;
-    gap:16px;
-    align-items:flex-start;
-  }
-  .offer-list p{ color:var(--ink-soft); font-size:16px; }
-  .offer-note{
-    font-size:16px;
-    color:var(--muted);
-    margin-bottom:24px;
-    max-width:65ch;
-  }
-  .guarantee{
-    margin-top:40px;
-    border-top:1px solid var(--line);
-    padding-top:32px;
-  }
-  .guarantee h3{ font-size:20px; margin-bottom:12px; }
-
-  /* CTA BLOK */
-  .cta-inner{ text-align:center; }
-  .cta-inner h2{ color:var(--white); }
-  .cta-inner > p{ color:#afafaf; max-width:60ch; margin-left:auto; margin-right:auto; }
-  .cta-steps{
-    display:flex;
-    justify-content:center;
+    align-items:center;
+    justify-content:space-between;
     gap:24px;
-    margin-top:48px;
-    margin-bottom:48px;
-    flex-wrap:wrap;
+    padding-top:12px;
+    padding-bottom:12px;
   }
-  .cta-step{
-    flex:1 1 260px;
-    max-width:320px;
-    text-align:left;
-    background:#1e1e1e;
-    border:1px solid #313131;
-    border-radius:16px;
-    padding-top:32px;
-    padding-bottom:32px;
-    padding-left:32px;
-    padding-right:32px;
+  .topbar a:hover{ color:var(--white); }
+  .topbar-left, .topbar-mid, .topbar-right{
+    display:flex;
+    align-items:center;
+    gap:24px;
   }
-  .cta-step .num{
-    width:40px;
-    height:40px;
-    border-radius:12px;
+  .topbar-item{ display:inline-flex; align-items:center; gap:8px; }
+  .topbar .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
     background:var(--green);
     color:var(--ink);
     font-family:'Urbanist',sans-serif;
-    font-weight:800;
-    font-size:20px;
+    font-weight:700;
+    border-radius:12px;
+    padding-top:4px;
+    padding-bottom:4px;
+    padding-left:12px;
+    padding-right:12px;
+  }
+  .topbar .pill:hover{ color:var(--ink); background:var(--green-dark); }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--dark);
+    transition:background .3s ease;
+  }
+  header.scrolled{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding-top:16px;
+    padding-bottom:16px;
+  }
+  .logo img{ height:48px; width:auto; filter:brightness(0) invert(1); }
+  header.scrolled .logo img{ filter:none; }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:32px;
+  }
+  .nav-links a{
+    font-family:'Urbanist',sans-serif;
+    font-weight:600;
+    font-size:16px;
+    color:var(--white);
+  }
+  .nav-links a:hover{ color:var(--green); }
+  header.scrolled .nav-links a{ color:var(--ink); }
+  header.scrolled .nav-links a:hover{ color:var(--green-dark); }
+
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .nav-phone{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Urbanist',sans-serif;
+    font-weight:600;
+    font-size:16px;
+    color:var(--white);
+  }
+  .nav-phone:hover{ color:var(--green); }
+  header.scrolled .nav-phone{ color:var(--ink); }
+
+  .hamburger{
+    display:none;
+    flex-direction:column;
+    gap:4px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left:8px;
+    padding-right:8px;
+  }
+  .hamburger span{
+    display:block;
+    width:24px;
+    height:2px;
+    background:var(--white);
+  }
+  header.scrolled .hamburger span{ background:var(--ink); }
+
+  .mobile-menu{
+    display:none;
+    flex-direction:column;
+    background:var(--white);
+    border-top:1px solid var(--line);
+  }
+  .mobile-menu a{
+    font-family:'Urbanist',sans-serif;
+    font-weight:600;
+    font-size:16px;
+    color:var(--ink);
+    padding-top:16px;
+    padding-bottom:16px;
+    padding-left:24px;
+    padding-right:24px;
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-menu .btn{
+    margin-top:20px;
+    margin-bottom:20px;
+    margin-left:24px;
+    margin-right:24px;
+  }
+  .mobile-menu.open{ display:flex; }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding-top:24px; padding-bottom:96px; }
+  .hero-card{
+    position:relative;
+    display:flex;
+    align-items:center;
+    min-height:600px;
+    border-radius:24px;
+    overflow:hidden;
+    background:var(--ink-soft);
+    padding-top:64px;
+    padding-bottom:112px;
+    padding-left:48px;
+    padding-right:48px;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0.6;
+  }
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 100%);
+  }
+  .hero-content{ position:relative; z-index:2; max-width:800px; }
+  .hero-eyebrow{
+    font-family:'Urbanist',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--green);
+    margin-bottom:16px;
+  }
+  .hero-content h1{
+    color:var(--white);
+    font-size:64px;
+    margin-bottom:32px;
+  }
+  .hero-points{
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+  }
+  .hero-points li{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--white);
+    font-size:16px;
+  }
+
+  /* traka za pretragu preko heroja */
+  .search-card{
+    position:relative;
+    z-index:3;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:24px;
+    margin-top:-64px;
+    margin-left:32px;
+    margin-right:32px;
+    padding-top:24px;
+    padding-bottom:24px;
+    padding-left:24px;
+    padding-right:24px;
+  }
+  .search-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+  }
+  .search-tabs{ display:flex; gap:8px; flex-wrap:wrap; }
+  .search-tab{
+    font-family:'Urbanist',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--ink);
+    border-radius:12px;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left:20px;
+    padding-right:20px;
+    border:1px solid transparent;
+    background:transparent;
+    cursor:pointer;
+  }
+  .search-tab.active{ background:var(--green); border-color:var(--green-dark); }
+  .search-help{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .search-fields{
+    display:grid;
+    grid-template-columns:repeat(4,1fr) auto;
+    align-items:center;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left:8px;
+    padding-right:8px;
+  }
+  .field{
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-left:16px;
+    padding-right:16px;
+    border-right:1px solid var(--line);
+  }
+  .field label{
+    display:block;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:4px;
+  }
+  .field .val{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Urbanist',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--ink);
+  }
+  .field input{
+    font-family:'Urbanist',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--ink);
+    border:none;
+    outline:none;
+    background:transparent;
+    width:100%;
+    min-width:0;
+  }
+  .search-fields .btn{ margin-left:16px; }
+
+  /* ---------- MARKE ---------- */
+  .brand-row{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:16px;
+  }
+  .brand-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:16px;
+    min-height:96px;
     display:flex;
     align-items:center;
     justify-content:center;
-    margin-bottom:16px;
+    text-align:center;
+    color:var(--muted);
+    font-family:'Urbanist',sans-serif;
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:1px;
+    padding-left:12px;
+    padding-right:12px;
   }
-  .cta-step p{ color:#afafaf; font-size:16px; }
-  .cta-inner .btn{ justify-content:center; }
 
-  /* WARNING */
-  .warning-box{
-    background:var(--surface);
+  /* ---------- KARTICE VOZILA ---------- */
+  .car-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .car-grid-4{ grid-template-columns:repeat(4,1fr); }
+  .car-card{
+    background:var(--white);
     border:1px solid var(--line);
-    border-left:4px solid var(--green);
     border-radius:16px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .car-card .ph{ min-height:200px; border-radius:0; border:0; border-bottom:1px solid var(--line); }
+  .car-body{
+    padding-top:24px;
+    padding-bottom:24px;
+    padding-left:24px;
+    padding-right:24px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+  }
+  .car-body h3{ font-size:20px; margin-bottom:8px; }
+  .car-loc{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    color:var(--muted);
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .car-specs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    padding-top:16px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .car-specs div{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    color:var(--text);
+  }
+  .car-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding-top:16px;
+    margin-top:auto;
+  }
+  .car-price{
+    font-family:'Urbanist',sans-serif;
+    font-weight:800;
+    font-size:20px;
+    color:var(--ink);
+  }
+  .car-price small{
+    display:block;
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  /* ---------- SEKCIJA SA VIDEOM ---------- */
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .video-ph{
+    position:relative;
+    min-height:400px;
+    border-radius:24px;
+  }
+  .play{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .split h2{ margin-bottom:16px; }
+  .split p.lead{ margin-bottom:32px; max-width:56ch; }
+  .check-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+
+  /* ---------- TIPOVI VOZILA ---------- */
+  .type-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .type-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding-top:12px;
+    padding-bottom:16px;
+    padding-left:12px;
+    padding-right:12px;
+  }
+  .type-card .ph{ min-height:120px; border-radius:12px; margin-bottom:16px; }
+  .type-card h3{ font-size:16px; margin-bottom:12px; padding-left:8px; }
+  .type-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding-left:8px;
+  }
+  .arrow-sm{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:var(--surface);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+
+  /* ---------- KAKO FUNKCIONISE ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+  }
+  .step{ text-align:center; }
+  .step .ico{
+    width:64px;
+    height:64px;
+    border-radius:16px;
+    background:var(--surface);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:20px;
+  }
+  .step h3{ font-size:16px; margin-bottom:8px; }
+  .step p{ font-size:12px; color:var(--muted); }
+
+  /* ---------- KALKULATOR ---------- */
+  .calc-split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .calc-split h2{ color:var(--white); margin-bottom:16px; }
+  .calc-split p{ color:#afafaf; max-width:48ch; }
+  .calc-card{
+    background:var(--white);
+    border-radius:24px;
     padding-top:32px;
     padding-bottom:32px;
     padding-left:32px;
     padding-right:32px;
-    margin-top:40px;
-    max-width:70ch;
   }
-  .warning-box p{ color:var(--ink-soft); }
-
-  /* FOOTER */
-  .footer-grid{
+  .calc-card h3{ font-size:24px; margin-bottom:8px; }
+  .calc-card > p{ font-size:12px; color:var(--muted); margin-bottom:24px; }
+  .calc-fields{
     display:grid;
-    grid-template-columns:1.2fr 1fr 1fr;
-    gap:48px;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:24px;
   }
-  .footer-col h4{
-    font-family:'Urbanist',sans-serif;
-    font-size:20px;
-    margin-bottom:16px;
-  }
-  .footer-col p, .footer-col a{
-    font-size:16px;
-    color:var(--text);
+  .calc-field label{
     display:block;
-    margin-bottom:12px;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:8px;
   }
-  .footer-col a:hover{ color:var(--ink); }
-  .footer-logo img{ height:40px; margin-bottom:16px; }
-  .footer-bottom{
-    border-top:1px solid var(--line);
-    margin-top:48px;
-    padding-top:24px;
+  .calc-field input{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-left:16px;
+    padding-right:16px;
+    outline:none;
+  }
+  .calc-rows{ margin-bottom:24px; }
+  .calc-rows div{
     display:flex;
     justify-content:space-between;
-    flex-wrap:wrap;
+    gap:16px;
+    font-size:12px;
+    padding-top:8px;
+    padding-bottom:8px;
+  }
+  .calc-rows div span:first-child{ color:var(--muted); }
+  .calc-rows div span:last-child{ font-family:'Urbanist',sans-serif; font-weight:700; color:var(--ink); }
+  .calc-card .btn{ width:100%; }
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+    border-top:1px solid var(--line-dark);
+    margin-top:48px;
+    padding-top:48px;
+  }
+  .stat .num{
+    font-family:'Urbanist',sans-serif;
+    font-weight:800;
+    font-size:48px;
+    color:var(--white);
+    line-height:1.12;
+  }
+  .stat p{ color:#afafaf; font-size:12px; }
+
+  /* ---------- KOLAZ ---------- */
+  .collage{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    align-items:center;
+  }
+  .collage::before{
+    content:"";
+    position:absolute;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:var(--green-soft);
+    z-index:0;
+  }
+  .collage .ph{ position:relative; z-index:1; min-height:180px; border-radius:24px; }
+  .collage .tall{ min-height:240px; }
+
+  /* ---------- USLUGE ---------- */
+  .svc-row{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:24px;
+  }
+  .svc-card{
+    position:relative;
+    border-radius:16px;
+    overflow:hidden;
+    min-height:240px;
+  }
+  .svc-card .ph{ position:absolute; inset:0; border-radius:0; border:0; }
+  .svc-label{
+    position:absolute;
+    left:16px;
+    right:16px;
+    bottom:16px;
+    background:var(--white);
+    border-radius:12px;
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-left:16px;
+    padding-right:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
     gap:12px;
   }
-  .footer-bottom p{ font-size:12px; color:var(--muted); }
+  .svc-label h3{ font-size:16px; }
+  .svc-label p{ font-size:12px; color:var(--muted); }
 
-  .ps-box{
+  /* ---------- DVE TRAKE ---------- */
+  .banner-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .banner{
+    position:relative;
+    border-radius:24px;
+    overflow:hidden;
+    padding-top:40px;
+    padding-bottom:40px;
+    padding-left:40px;
+    padding-right:40px;
+    display:flex;
+    align-items:center;
+    gap:24px;
+  }
+  .banner-blue{ background:var(--blue-soft); }
+  .banner-yellow{ background:var(--yellow-soft); }
+  .banner-txt{ flex:1 1 auto; }
+  .banner h3{ font-size:24px; margin-bottom:12px; }
+  .banner p{ font-size:12px; color:var(--ink-soft); margin-bottom:20px; max-width:36ch; }
+  .banner .ph{
+    flex:0 0 160px;
+    min-height:120px;
+    background:rgba(255,255,255,0.5);
+    border-color:rgba(255,255,255,0.7);
+    color:var(--ink-soft);
+  }
+
+  /* ---------- RECENZIJE ---------- */
+  .avatars{
+    display:inline-flex;
+    align-items:center;
+    margin-right:4px;
+  }
+  .avatars span{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:var(--surface-2);
+    border:2px solid var(--white);
+    margin-right:-8px;
+  }
+  .rev-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .rev-card{
     background:var(--white);
     border:1px solid var(--line);
     border-radius:16px;
@@ -531,26 +900,253 @@
     padding-bottom:32px;
     padding-left:32px;
     padding-right:32px;
-    margin-top:48px;
+    display:flex;
+    flex-direction:column;
   }
-  .ps-box p{ color:var(--ink-soft); font-size:16px; }
-  .ps-box strong{ color:var(--ink); }
+  .rev-card h3{ font-size:16px; margin-bottom:12px; }
+  .rev-card .ph{ min-height:96px; margin-bottom:24px; }
+  .rev-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:auto;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .rev-person{ display:flex; align-items:center; gap:12px; }
+  .rev-person .ava{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--surface-2);
+    flex-shrink:0;
+  }
+  .rev-person strong{
+    display:block;
+    font-family:'Urbanist',sans-serif;
+    font-size:16px;
+    color:var(--ink);
+  }
+  .rev-person span{ font-size:12px; color:var(--muted); }
+  .stars{ display:flex; gap:4px; flex-shrink:0; }
 
-  /* RESPONSIVE */
+  /* ---------- SAVETI ---------- */
+  .news-split{
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:24px;
+  }
+  .news-big{
+    position:relative;
+    border-radius:24px;
+    overflow:hidden;
+    min-height:400px;
+  }
+  .news-big .ph{ position:absolute; inset:0; border-radius:0; border:0; }
+  .news-big::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.72) 100%);
+    z-index:1;
+  }
+  .news-big-txt{
+    position:absolute;
+    left:32px;
+    right:32px;
+    bottom:32px;
+    z-index:2;
+  }
+  .news-big-txt h3{ font-size:24px; color:var(--white); margin-bottom:8px; }
+  .news-big-txt p{ font-size:12px; color:#d6d7d8; }
+  .news-list{ display:flex; flex-direction:column; gap:16px; }
+  .news-item{
+    display:flex;
+    gap:16px;
+    align-items:center;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding-top:16px;
+    padding-bottom:16px;
+    padding-left:16px;
+    padding-right:16px;
+  }
+  .news-item .ph{ flex:0 0 96px; min-height:80px; border-radius:12px; }
+  .news-item h3{ font-size:16px; margin-bottom:4px; }
+  .news-item p{ font-size:12px; color:var(--muted); }
+
+  /* ---------- USKORO ---------- */
+  .soon-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .soon-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding-top:16px;
+    padding-bottom:16px;
+    padding-left:16px;
+    padding-right:16px;
+    text-align:center;
+  }
+  .soon-card .ph{ min-height:160px; border-radius:12px; margin-bottom:16px; }
+  .soon-card h3{ font-size:16px; }
+  .soon-card p{ font-size:12px; color:var(--muted); }
+
+  /* ---------- ZELENA TRAKA ---------- */
+  .app-split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .app-split h2{ margin-bottom:16px; }
+  .app-split p{ color:var(--ink-soft); max-width:44ch; margin-bottom:32px; }
+  .app-split .ph{
+    min-height:200px;
+    background:rgba(255,255,255,0.45);
+    border-color:rgba(255,255,255,0.7);
+    color:var(--ink-soft);
+    border-radius:24px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .news-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    align-items:center;
+    padding-bottom:48px;
+    border-bottom:1px solid var(--line-dark);
+  }
+  .news-row h2{ color:var(--white); font-size:32px; }
+  .news-form{
+    display:flex;
+    gap:12px;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+  }
+  .news-form .inp{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--dark-2);
+    border:1px solid var(--line-dark);
+    border-radius:12px;
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-left:16px;
+    padding-right:16px;
+    flex:1 1 240px;
+  }
+  .news-form input{
+    border:none;
+    outline:none;
+    background:transparent;
+    color:var(--white);
+    font-size:16px;
+    width:100%;
+    min-width:0;
+  }
+  .news-form input::placeholder{ color:var(--muted); }
+
+  .foot-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;
+    gap:32px;
+    padding-top:48px;
+    padding-bottom:48px;
+  }
+  .foot-brand img{ height:40px; margin-bottom:24px; filter:brightness(0) invert(1); }
+  .foot-brand .row{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    font-size:12px;
+    color:#afafaf;
+    margin-bottom:12px;
+  }
+  .foot-call{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:24px;
+  }
+  .foot-call small{
+    display:block;
+    font-size:12px;
+    color:#afafaf;
+  }
+  .foot-call strong{
+    font-family:'Urbanist',sans-serif;
+    font-weight:800;
+    font-size:20px;
+    color:var(--green);
+  }
+  .foot-col h4{ color:var(--white); font-size:16px; margin-bottom:20px; }
+  .foot-col a{
+    display:block;
+    font-size:12px;
+    color:#afafaf;
+    margin-bottom:12px;
+  }
+  .foot-col a:hover{ color:var(--white); }
+  .foot-bottom{
+    border-top:1px solid var(--line-dark);
+    padding-top:32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .foot-bottom p{ font-size:12px; color:#afafaf; }
+  .socials{ display:flex; align-items:center; gap:12px; }
+  .socials span.lbl{ font-family:'Urbanist',sans-serif; font-weight:700; font-size:12px; color:var(--white); }
+  .socials a{
+    width:32px;
+    height:32px;
+    border-radius:8px;
+    background:var(--dark-2);
+    border:1px solid var(--line-dark);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--white);
+  }
+  .socials a:hover{ background:var(--green); color:var(--ink); border-color:var(--green-dark); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1199px){
+    .brand-row{ grid-template-columns:repeat(4,1fr); }
+    .car-grid, .car-grid-4{ grid-template-columns:repeat(2,1fr); }
+    .type-grid{ grid-template-columns:repeat(2,1fr); }
+    .svc-row{ grid-template-columns:repeat(3,1fr); }
+    .soon-grid{ grid-template-columns:repeat(2,1fr); }
+    .foot-grid{ grid-template-columns:1fr 1fr 1fr; }
+    .steps{ grid-template-columns:1fr 1fr; }
+  }
+
   @media (max-width: 991px){
-    .nav-links{ display:none; }
+    .nav-links, .nav-phone{ display:none; }
+    .nav-right .btn{ display:none; }
     .hamburger{ display:flex; }
+    .topbar-mid, .topbar-right{ display:none; }
     h2{ font-size:32px; }
-    .hero{ padding-top:176px; }
-    .hero-card{ min-height:520px; }
+    .hero-card{ min-height:520px; padding-left:32px; padding-right:32px; }
     .hero-content h1{ font-size:40px; }
-    .hero-content p{ font-size:16px; }
-    .solution-inner{ grid-template-columns:1fr; gap:40px; }
-    .cred-grid{ grid-template-columns:1fr; }
-    .problem-grid{ grid-template-columns:1fr; }
-    .benefits-grid{ grid-template-columns:1fr; }
-    .footer-grid{ grid-template-columns:1fr; gap:32px; }
-    .cta-step{ max-width:100%; }
+    .search-fields{ grid-template-columns:1fr 1fr; }
+    .search-fields .btn{ grid-column:span 2; margin-left:0; margin-top:8px; }
+    .field{ border-right:0; border-bottom:1px solid var(--line); }
+    .split, .calc-split, .app-split, .news-split{ grid-template-columns:1fr; gap:32px; }
+    .stats{ grid-template-columns:1fr 1fr; gap:24px; }
+    .banner-2{ grid-template-columns:1fr; }
+    .rev-grid{ grid-template-columns:1fr; }
+    .collage::before{ width:240px; height:240px; }
   }
 
   @media (max-width: 768px){
@@ -564,287 +1160,1012 @@
       padding-right:24px;
     }
     h2{ font-size:28px; }
-    .hero{ padding-top:144px; padding-bottom:64px; }
-    .hero-card{ border-radius:16px; min-height:480px; }
-    .hero-content{ padding-left:24px; padding-right:24px; padding-top:48px; padding-bottom:48px; }
-    .hero-content h1{ font-size:32px; }
-    .logo img{ height:48px; }
-    header.scrolled .logo img{ height:40px; }
-    .offer-box{
+    .sec-head{ flex-direction:column; align-items:flex-start; }
+    .hero{ padding-bottom:64px; }
+    .hero-card{
       border-radius:16px;
+      min-height:440px;
       padding-left:24px;
       padding-right:24px;
-      padding-top:32px;
-      padding-bottom:32px;
+      padding-top:48px;
+      padding-bottom:96px;
     }
-    .problem-item, .cred-card, .cta-step, .warning-box, .ps-box{
-      padding-left:24px;
-      padding-right:24px;
+    .hero-content h1{ font-size:32px; }
+    .hero-points{ gap:12px; flex-direction:column; }
+    .search-card{
+      margin-left:0;
+      margin-right:0;
+      margin-top:-48px;
+      border-radius:16px;
+      padding-left:16px;
+      padding-right:16px;
     }
-    .cta-steps{ gap:16px; }
+    .search-fields{ grid-template-columns:1fr; }
+    .search-fields .btn{ grid-column:span 1; }
+    .brand-row{ grid-template-columns:1fr 1fr; }
+    .car-grid, .car-grid-4, .type-grid, .svc-row, .soon-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr; }
+    .check-cols{ grid-template-columns:1fr; }
+    .calc-fields{ grid-template-columns:1fr; }
+    .collage{ grid-template-columns:1fr 1fr; }
+    .banner{ flex-direction:column; align-items:flex-start; padding-left:24px; padding-right:24px; }
+    .banner .ph{ flex:1 1 auto; width:100%; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    .news-row{ grid-template-columns:1fr; }
+    .news-form{ justify-content:flex-start; }
+    .stat .num{ font-size:32px; }
   }
 </style>
 </head>
 <body>
 
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <div class="topbar-left">
+      <a href="tel:0345005000" class="topbar-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        034/500-500
+      </a>
+      <a href="mailto:info@expertrentacar.rs" class="topbar-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+        info@expertrentacar.rs
+      </a>
+    </div>
+    <div class="topbar-mid">
+      <span>Cena koju čuješ na telefonu je cena koju plaćaš</span>
+      <a href="tel:0345005000" class="pill">
+        Pozovi odmah
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
+        Radnim danima 08-17
+      </span>
+      <span class="topbar-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        Kragujevac
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
 <header id="siteHeader">
   <div class="wrap navbar">
     <a href="#" class="logo">
       <img src="assets/logo.png" alt="Expert Rent a Car logo">
     </a>
     <nav class="nav-links">
-      <a href="#problem">Zašto ti treba</a>
-      <a href="#vozila">Vozni park</a>
-      <a href="#ponuda">Ponuda</a>
+      <a href="#vozila">Vozila</a>
+      <a href="#tipovi">Tipovi vozila</a>
+      <a href="#kako">Kako funkcioniše</a>
+      <a href="#usluge">Usluge</a>
       <a href="#kontakt">Kontakt</a>
-      <a href="tel:0345005000" class="btn nav-cta">Pozovi za cenu</a>
     </nav>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Otvori meni" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-right">
+      <a href="tel:0345005000" class="nav-phone">034/500-500</a>
+      <a href="tel:0345005000" class="btn btn-white btn-sm">Pozovi za cenu</a>
+      <a href="tel:0345005000" class="btn btn-ico" aria-label="Pozovi Expert Rent a Car">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Otvori meni" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#problem">Zašto ti treba</a>
-    <a href="#vozila">Vozni park</a>
-    <a href="#ponuda">Ponuda</a>
+    <a href="#vozila">Vozila</a>
+    <a href="#tipovi">Tipovi vozila</a>
+    <a href="#kako">Kako funkcioniše</a>
+    <a href="#usluge">Usluge</a>
     <a href="#kontakt">Kontakt</a>
     <a href="tel:0345005000" class="btn">Pozovi za cenu</a>
   </div>
 </header>
 
+<!-- HERO + TRAKA ZA UPIT -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-card">
       <img src="assets/slider-2-bg.jpg" alt="Vozilo parkirano u garaži, detalj zadnjeg svetla" class="hero-bg">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h1>Iznajmi auto u Kragujevcu i vozi bez brige o skrivenim troškovima</h1>
-        <p>Kratkoročno ili dugoročno, za posao, putovanje ili svaki dan. Zoveš, kažeš kad ti treba vozilo, i dobijaš tačnu cenu i jasan ugovor - bez sitnih slova.</p>
-        <a href="tel:0345005000" class="btn">Pozovi za cenu</a>
+        <p class="hero-eyebrow">Rent a car Kragujevac</p>
+        <h1>Treba ti auto?<br>Na pravom si mestu.</h1>
+        <ul class="hero-points">
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Bez skrivenih troškova</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Redovno održavana vozila</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Podrška tokom celog perioda</li>
+        </ul>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="section-pad" id="problem">
-  <div class="wrap">
-    <div class="eyebrow">Poznata situacija</div>
-    <h2>Auto ti treba, a ne znaš kome da veruješ na telefonu</h2>
-    <p class="copy section-sub">Ovako to izgleda kad ti zatreba vozilo u Kragujevcu, bez obzira da li si tu poslom, na putu ili živiš ovde.</p>
-
-    <div class="problem-grid">
-      <div class="problem-item">
-        <h3>Stigneš u grad i tek tad počneš da tražiš auto</h3>
-        <p class="copy">Autobus ili avion te dovede do Kragujevca, i tek tad shvatiš da ti treba vozilo. Zoveš tri firme, svaka ti kaže drugu cenu, a kad stigneš po auto, iskrsnu dodatne stavke o kojima niko nije pominjao na telefonu.</p>
-      </div>
-      <div class="problem-item">
-        <h3>Posao te šalje na sastanke po gradu i okolini</h3>
-        <p class="copy">Tvoje kola su na servisu ili si na terenu bez svog vozila, a treba ti auto od ponedeljka do petka, brzo, bez papirologije koja traje dva dana.</p>
-      </div>
-      <div class="problem-item">
-        <h3>Tvoj auto je u kvaru već treću nedelju</h3>
-        <p class="copy">Bez auta ne stižeš na posao na vreme, ne stižeš po decu, svaki dan planiraš unazad - koga da moliš za prevoz, koliko taksi košta ako računaš svaki dan u nedelji.</p>
-      </div>
-      <div class="problem-item">
-        <h3>Ne znaš šta stoji u ugovoru dok ne potpišeš</h3>
-        <p class="copy">Cena na sajtu je jedna, cena na licu mesta druga, i tek kad vratiš auto vidiš stavke koje niko nije pominjao unapred.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-pad">
-  <div class="wrap">
-    <div class="block block-surface">
-      <div class="solution-inner">
-        <div>
-          <div class="eyebrow">Rešenje</div>
-          <h2>Expert Rent a Car ti to skida s vrata</h2>
-          <p class="copy" style="margin-bottom:16px;">Zoveš, kažeš kad ti treba vozilo i na koliko dugo, i dobijaš konkretnu cenu za tvoj slučaj - ne paušalnu cifru sa sajta koja se promeni kad dođeš po auto.</p>
-          <p class="copy" style="margin-bottom:32px;">Radimo iz Kragujevca, za turiste, poslovne ljude i lokalno stanovništvo, kratkoročno i dugoročno, sa vozilom koje je spremno onog momenta kad ti zatreba.</p>
-          <a href="tel:0345005000" class="btn">Pozovi za cenu</a>
+    <div class="search-card">
+      <div class="search-top">
+        <div class="search-tabs">
+          <button type="button" class="search-tab active">Sva vozila</button>
+          <button type="button" class="search-tab">Kratkoročno</button>
+          <button type="button" class="search-tab">Dugoročno</button>
         </div>
-        <div class="placeholder">FOTOGRAFIJA VOZNOG PARKA</div>
+        <a href="tel:0345005000" class="search-help">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+          Treba ti pomoć?
+        </a>
+      </div>
+      <div class="search-fields">
+        <div class="field">
+          <label for="f-preuzimanje">Mesto preuzimanja</label>
+          <div class="val">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <input id="f-preuzimanje" type="text" value="Kragujevac">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-vracanje">Mesto vraćanja</label>
+          <div class="val">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <input id="f-vracanje" type="text" value="Kragujevac">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-od">Datum preuzimanja</label>
+          <div class="val">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+            <input id="f-od" type="text" placeholder="Izaberi datum">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-do">Datum vraćanja</label>
+          <div class="val">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+            <input id="f-do" type="text" placeholder="Izaberi datum">
+          </div>
+        </div>
+        <a href="tel:0345005000" class="btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg>
+          Pronađi vozilo
+        </a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- MARKE -->
+<section class="section-pad" id="marke">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Marke u voznom parku</h2>
+        <p>Vozila koja održavamo i izdajemo iz Kragujevca</p>
+      </div>
+      <div class="sec-actions">
+        <a href="tel:0345005000" class="btn btn-white btn-sm">
+          Pitaj za marku
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-card">LOGO MARKE 1</div>
+      <div class="brand-card">LOGO MARKE 2</div>
+      <div class="brand-card">LOGO MARKE 3</div>
+      <div class="brand-card">LOGO MARKE 4</div>
+      <div class="brand-card">LOGO MARKE 5</div>
+      <div class="brand-card">LOGO MARKE 6</div>
+    </div>
+  </div>
+</section>
+
+<!-- NAJTRAZENIJA VOZILA -->
 <section class="section-pad" id="vozila">
   <div class="wrap">
-    <div class="eyebrow">Zašto baš mi</div>
-    <h2>Zašto da veruješ baš nama</h2>
-    <p class="copy section-sub">Nema razloga da veruješ na reč. Evo tačno kako radimo.</p>
+    <div class="sec-head">
+      <div>
+        <h2>Najtraženija vozila</h2>
+        <p>Klase koje najčešće izdajemo, cena se dogovara na telefonu</p>
+      </div>
+      <div class="sec-actions">
+        <button type="button" class="btn-round" aria-label="Prethodno vozilo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="btn-round" aria-label="Sledeće vozilo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
 
-    <div class="cred-grid">
-      <div class="cred-card">
-        <div class="icon-box">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>
+    <div class="car-grid">
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA - MALI GRADSKI AUTO</div>
+        <div class="car-body">
+          <h3>Mali gradski auto</h3>
+          <div class="car-loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Kragujevac, Srbija
+          </div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Kilometraža na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Menjač na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Gorivo na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Broj mesta na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja najma</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
         </div>
-        <h3>Transparentno poslovanje</h3>
-        <p>Cena koju čuješ na telefonu je cena koju plaćaš. Bez dodatnih stavki koje se pojave kad vratiš vozilo.</p>
-      </div>
-      <div class="cred-card">
-        <div class="icon-box">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" aria-hidden="true"><path d="M4 12l4 4L20 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </article>
+
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA - KOMPAKT</div>
+        <div class="car-body">
+          <h3>Kompakt</h3>
+          <div class="car-loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Kragujevac, Srbija
+          </div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Kilometraža na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Menjač na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Gorivo na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Broj mesta na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja najma</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
         </div>
-        <h3>Redovno održavana vozila</h3>
-        <p>Svako vozilo prolazi pregled i servis pre nego što ga preuzmeš. Ne sedaš u auto sa nepoznatom istorijom.</p>
-      </div>
-      <div class="cred-card">
-        <div class="icon-box">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8" aria-hidden="true"><path d="M12 2v6M12 22v-6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" stroke-linecap="round"/></svg>
+      </article>
+
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA - LIMUZINA</div>
+        <div class="car-body">
+          <h3>Limuzina</h3>
+          <div class="car-loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Kragujevac, Srbija
+          </div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Kilometraža na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Menjač na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Gorivo na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Broj mesta na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja najma</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
         </div>
-        <h3>Podrška tokom celog perioda</h3>
-        <p>Dok koristiš vozilo, imaš direktnu podršku od nas. Ako nešto zatreba, zoveš i rešavamo.</p>
-      </div>
+      </article>
+
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA - KARAVAN</div>
+        <div class="car-body">
+          <h3>Karavan</h3>
+          <div class="car-loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Kragujevac, Srbija
+          </div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Kilometraža na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Menjač na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Gorivo na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Broj mesta na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja najma</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA - SUV</div>
+        <div class="car-body">
+          <h3>SUV</h3>
+          <div class="car-loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Kragujevac, Srbija
+          </div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Kilometraža na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Menjač na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Gorivo na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Broj mesta na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja najma</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA - KOMBI</div>
+        <div class="car-body">
+          <h3>Kombi</h3>
+          <div class="car-loc">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Kragujevac, Srbija
+          </div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Kilometraža na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Menjač na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Gorivo na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Broj mesta na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja najma</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div style="text-align:center;margin-top:48px;">
+      <a href="tel:0345005000" class="btn" style="display:inline-flex;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7" stroke-linecap="round"/><path d="M21 4v5h-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Pitaj za ostala vozila
+      </a>
     </div>
   </div>
 </section>
 
+<!-- ZASTO MI -->
 <section class="section-pad">
   <div class="wrap">
     <div class="block block-surface">
-      <div class="eyebrow">Šta konkretno dobijaš</div>
-      <h2>Ne dobijaš samo vozilo</h2>
-      <p class="copy section-sub">Dobijaš stvari koje se ne vide na papiru, ali osetiš ih svaki dan dok koristiš auto.</p>
-
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Ne planiraš prevoz unapred - auto je tu kad ti treba, na dan i sat koji ti odgovara.</p>
+      <div class="split">
+        <div class="ph video-ph">
+          FOTOGRAFIJA PREUZIMANJA VOZILA
+          <span class="play">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </span>
         </div>
-        <div class="benefit-item">
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Ne brineš da će te nešto iznenaditi na kraju perioda korišćenja - cena je jasna od prve rečenice.</p>
-        </div>
-        <div class="benefit-item">
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Ne gubiš vreme na papirologiju i čekanje - dogovor traje jedan telefonski poziv.</p>
-        </div>
-        <div class="benefit-item">
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Voziš vozilo koje je pregledano i servisirano, ne ono što je "nekako još u pogonu".</p>
-        </div>
-        <div class="benefit-item">
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Rešavaš prevoz za posao, porodicu ili putovanje istim pozivom, bez traženja po više firmi.</p>
-        </div>
-        <div class="benefit-item">
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Ne moraš da objašnjavaš firmi ili porodici zašto kasniš samo zato što nemaš auto tog dana.</p>
+        <div>
+          <div class="chip">Transparentno poslovanje</div>
+          <h2>Cena koju čuješ na telefonu je cena koju plaćaš</h2>
+          <p class="lead">Zoveš, kažeš kad ti treba vozilo i na koliko dugo, i dobijaš konkretnu cenu za tvoj slučaj - ne paušalnu cifru sa sajta koja se promeni kad dođeš po auto.</p>
+          <ul class="check-list check-cols">
+            <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Jasan ugovor bez sitnih slova</span></li>
+            <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Pregled i servis pre preuzimanja</span></li>
+            <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Dogovor traje jedan poziv</span></li>
+            <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Podrška dok koristiš vozilo</span></li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section-pad" id="ponuda">
+<!-- TIPOVI VOZILA -->
+<section class="section-pad" id="tipovi">
   <div class="wrap">
-    <div class="eyebrow">Ponuda</div>
-    <h2>Šta tačno dobijaš kad pozoveš</h2>
-    <p class="copy section-sub">Cena zavisi od trajanja i tipa vozila, zato je dajemo na telefonu, za tvoj konkretan slučaj, ne kao jednu cifru za sve.</p>
-
-    <div class="offer-box">
-      <h3>U dogovor ulazi</h3>
-      <div class="offer-list">
-        <div>
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Vozilo iz našeg voznog parka, izabrano prema tome za šta ti treba i na koliko dugo</p>
-        </div>
-        <div>
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Redovan servis i pregled vozila tokom celog perioda iznajmljivanja</p>
-        </div>
-        <div>
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Stručnu podršku dok koristiš vozilo - jedan poziv i rešavamo</p>
-        </div>
-        <div>
-          <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <p>Jasan ugovor, bez stavki koje se pojave kasnije</p>
-        </div>
+    <div class="sec-head">
+      <div>
+        <h2>Izaberi tip vozila</h2>
+        <p>Reci za šta ti treba auto, mi predlažemo klasu</p>
       </div>
-      <p class="offer-note">Ako si stalni klijent ili se vraćaš kod nas po vozilo drugi put, dogovaramo posebne uslove za taj termin.</p>
+      <div class="sec-actions">
+        <a href="tel:0345005000" class="btn btn-sm">
+          Vidi sve
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
 
-      <div class="guarantee">
-        <h3>Garancija bez skrivenih troškova</h3>
-        <p class="copy">U ceni koju čuješ na telefonu nema dodatnih stavki koje se pojave kasnije. Ono što ti kažem pre nego što preuzmeš vozilo, to i platiš na kraju.</p>
+    <div class="type-grid">
+      <a href="tel:0345005000" class="type-card">
+        <div class="ph">FOTOGRAFIJA - MALI AUTO</div>
+        <h3>Mali auto</h3>
+        <div class="type-foot"><span class="tag">Na upit</span><span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <a href="tel:0345005000" class="type-card">
+        <div class="ph">FOTOGRAFIJA - HEČBEK</div>
+        <h3>Hečbek</h3>
+        <div class="type-foot"><span class="tag">Na upit</span><span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <a href="tel:0345005000" class="type-card">
+        <div class="ph">FOTOGRAFIJA - LIMUZINA</div>
+        <h3>Limuzina</h3>
+        <div class="type-foot"><span class="tag">Na upit</span><span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <a href="tel:0345005000" class="type-card">
+        <div class="ph">FOTOGRAFIJA - KARAVAN</div>
+        <h3>Karavan</h3>
+        <div class="type-foot"><span class="tag">Na upit</span><span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <a href="tel:0345005000" class="type-card">
+        <div class="ph">FOTOGRAFIJA - SUV</div>
+        <h3>SUV</h3>
+        <div class="type-foot"><span class="tag">Na upit</span><span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <a href="tel:0345005000" class="type-card">
+        <div class="ph">FOTOGRAFIJA - KOMBI</div>
+        <h3>Kombi</h3>
+        <div class="type-foot"><span class="tag">Na upit</span><span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <a href="tel:0345005000" class="type-card">
+        <div class="ph">FOTOGRAFIJA - VOZILO ZA FIRME</div>
+        <h3>Vozilo za firme</h3>
+        <div class="type-foot"><span class="tag">Na upit</span><span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <a href="tel:0345005000" class="type-card">
+        <div class="ph">FOTOGRAFIJA - VOZILO NA DUŽI PERIOD</div>
+        <h3>Duži period</h3>
+        <div class="type-foot"><span class="tag">Na upit</span><span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- KAKO FUNKCIONISE -->
+<section class="section-pad" id="kako">
+  <div class="wrap">
+    <div class="sec-head-center">
+      <p class="over">Kako funkcioniše</p>
+      <h2>Od poziva do ključeva u ruci, za jedan dan</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Pozoveš</h3>
+        <p>Kažeš kad ti treba vozilo i na koliko dugo</p>
+      </div>
+      <div class="step">
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8" aria-hidden="true"><path d="M3 13l2-5a3 3 0 0 1 3-2h8a3 3 0 0 1 3 2l2 5v5H3v-5z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="15.5" r="1.5"/><circle cx="16.5" cy="15.5" r="1.5"/></svg>
+        </div>
+        <h3>Biramo vozilo</h3>
+        <p>Predlažemo klasu koja odgovara tvojoj situaciji</p>
+      </div>
+      <div class="step">
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Dobijaš cenu</h3>
+        <p>Tačna cena i jasan ugovor, bez stavki koje iskrsnu kasnije</p>
+      </div>
+      <div class="step">
+        <div class="ico">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8" aria-hidden="true"><circle cx="8" cy="14" r="4"/><path d="m12 12 8-8 2 2-2 2 2 2-3 3-2-2-2 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Preuzimaš i voziš</h3>
+        <p>Vozilo je spremno za termin koji smo dogovorili</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- KALKULATOR + BROJKE -->
 <section class="section-pad">
   <div class="wrap">
-    <div class="block block-dark cta-inner">
-      <div class="eyebrow eyebrow-dark">Sledeći korak</div>
-      <h2>Pozovi i reci mi kad ti treba vozilo</h2>
-      <p>Bez formulara koje treba popuniti, bez čekanja na odgovor mejlom. Jedan poziv i imaš cenu i termin preuzimanja.</p>
-
-      <div class="cta-steps">
-        <div class="cta-step">
-          <div class="num">1</div>
-          <p>Pozoveš i kažeš kad ti treba vozilo i na koliko dugo</p>
+    <div class="block block-dark">
+      <div class="calc-split">
+        <div>
+          <h2>Hoćeš da znaš cenu pre nego što pozoveš?</h2>
+          <p>Unesi koliko dana ti treba vozilo i koju klasu gledaš. Dobijaš okvir, a tačnu cenu potvrđujemo na telefonu.</p>
         </div>
-        <div class="cta-step">
-          <div class="num">2</div>
-          <p>Dobiješ tačnu cenu za tvoj slučaj i dogovorimo termin preuzimanja</p>
-        </div>
-        <div class="cta-step">
-          <div class="num">3</div>
-          <p>Preuzmeš vozilo i voziš, bez brige o dodatnim troškovima</p>
+        <div class="calc-card">
+          <h3>Okvirna cena najma</h3>
+          <p>Procena za tvoj period korišćenja</p>
+          <div class="calc-fields">
+            <div class="calc-field">
+              <label for="c-klasa">Klasa vozila</label>
+              <input id="c-klasa" type="text" placeholder="Npr. kompakt">
+            </div>
+            <div class="calc-field">
+              <label for="c-dana">Broj dana</label>
+              <input id="c-dana" type="text" placeholder="Npr. 7">
+            </div>
+            <div class="calc-field">
+              <label for="c-pocetak">Datum preuzimanja</label>
+              <input id="c-pocetak" type="text" placeholder="Izaberi datum">
+            </div>
+            <div class="calc-field">
+              <label for="c-dodaci">Dodaci</label>
+              <input id="c-dodaci" type="text" placeholder="Npr. sedište za dete">
+            </div>
+          </div>
+          <div class="calc-rows">
+            <div><span>Dnevna cena</span><span>na upit</span></div>
+            <div><span>Broj dana</span><span>na upit</span></div>
+            <div><span>Ukupno</span><span>na upit</span></div>
+          </div>
+          <a href="tel:0345005000" class="btn">
+            Pozovi za tačnu cenu
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
 
-      <a href="tel:0345005000" class="btn">Pozovi za cenu</a>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">00</div>
+          <p>BROJKA ZA POPUNU - godine rada</p>
+        </div>
+        <div class="stat">
+          <div class="num">00</div>
+          <p>BROJKA ZA POPUNU - vozila u parku</p>
+        </div>
+        <div class="stat">
+          <div class="num">00</div>
+          <p>BROJKA ZA POPUNU - zadovoljni klijenti</p>
+        </div>
+        <div class="stat">
+          <div class="num">00</div>
+          <p>BROJKA ZA POPUNU - dugoročni ugovori</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- IZDVOJENO IZ PONUDE -->
 <section class="section-pad">
   <div class="wrap">
-    <div class="eyebrow">Ako ostaviš za kasnije</div>
-    <h2>Za 6 meseci ćeš rešavati istu situaciju</h2>
-    <div class="warning-box">
-      <p class="copy">Ako ovo ostaviš za sledeći put kad ti auto zatreba, opet ćeš zvati unaokolo i nadati se da cena koju čuješ ostaje ista kad dođeš po vozilo. Ništa se ne menja dok ne pozoveš i dogovoriš uslove koje razumeš od prve rečenice.</p>
+    <div class="sec-head">
+      <div>
+        <h2>Izdvojeno iz ponude</h2>
+        <p>Vozila koja su najčešće slobodna u kratkom roku</p>
+      </div>
+      <div class="sec-actions">
+        <a href="tel:0345005000" class="btn btn-sm">
+          Vidi sve
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="car-grid car-grid-4">
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA 1</div>
+        <div class="car-body">
+          <h3>Vozilo za grad</h3>
+          <div class="car-loc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Kragujevac, Srbija</div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
+        </div>
+      </article>
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA 2</div>
+        <div class="car-body">
+          <h3>Vozilo za put</h3>
+          <div class="car-loc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Kragujevac, Srbija</div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
+        </div>
+      </article>
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA 3</div>
+        <div class="car-body">
+          <h3>Vozilo za firmu</h3>
+          <div class="car-loc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Kragujevac, Srbija</div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
+        </div>
+      </article>
+      <article class="car-card">
+        <div class="ph">FOTOGRAFIJA VOZILA 4</div>
+        <div class="car-body">
+          <h3>Vozilo za porodicu</h3>
+          <div class="car-loc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Kragujevac, Srbija</div>
+          <div class="car-specs">
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="10" height="18" rx="2"/><path d="M17 8v9a2 2 0 0 0 4 0V9l-3-3" stroke-linecap="round"/></svg>Na upit</div>
+            <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><path d="M6 18v-7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v7M6 18h12M9 8V5h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>Na upit</div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price">Cena na upit<small>zavisi od trajanja</small></div>
+            <a href="tel:0345005000" class="btn btn-white btn-sm">Rezerviši</a>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
+<!-- DOGOVOR / KOLAZ -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="block block-surface">
+      <div class="split">
+        <div>
+          <div class="chip">Dogovor u jednom pozivu</div>
+          <h2>Dogovori vozilo danas, preuzmi ga kad ti odgovara</h2>
+          <p class="lead">Radimo iz Kragujevca, za turiste, poslovne ljude i lokalno stanovništvo, kratkoročno i dugoročno. Vozilo je spremno onog momenta kad ti zatreba.</p>
+          <ul class="check-list" style="margin-bottom:32px;">
+            <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Bez papirologije koja traje dva dana</span></li>
+            <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Posebni uslovi za stalne klijente</span></li>
+            <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Cena je jasna od prve rečenice</span></li>
+          </ul>
+          <a href="tel:0345005000" class="btn">
+            Pozovi za cenu
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="collage">
+          <div class="ph tall">FOTOGRAFIJA 1</div>
+          <div class="ph">FOTOGRAFIJA 2</div>
+          <div class="ph tall">FOTOGRAFIJA 3</div>
+          <div class="ph">FOTOGRAFIJA 4</div>
+          <div class="ph tall">FOTOGRAFIJA 5</div>
+          <div class="ph">FOTOGRAFIJA 6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USLUGE -->
+<section class="section-pad" id="usluge">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Naše usluge</h2>
+        <p>Isti telefon rešava sve, bez obzira na to koliko dugo ti treba auto</p>
+      </div>
+      <div class="sec-actions">
+        <a href="tel:0345005000" class="btn btn-sm">
+          Vidi sve
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="svc-row">
+      <a href="tel:0345005000" class="svc-card">
+        <div class="ph">FOTOGRAFIJA - KRATKOROČNI NAJAM</div>
+        <div class="svc-label">
+          <div><h3>Kratkoročno</h3><p>Od jednog dana</p></div>
+          <span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+      <a href="tel:0345005000" class="svc-card">
+        <div class="ph">FOTOGRAFIJA - DUGOROČNI NAJAM</div>
+        <div class="svc-label">
+          <div><h3>Dugoročno</h3><p>Mesecima unapred</p></div>
+          <span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+      <a href="tel:0345005000" class="svc-card">
+        <div class="ph">FOTOGRAFIJA - VOZILA ZA FIRME</div>
+        <div class="svc-label">
+          <div><h3>Za firme</h3><p>Vozilo za tim</p></div>
+          <span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+      <a href="tel:0345005000" class="svc-card">
+        <div class="ph">FOTOGRAFIJA - VOZILA ZA TURISTE</div>
+        <div class="svc-label">
+          <div><h3>Za turiste</h3><p>Dok si u gradu</p></div>
+          <span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+      <a href="tel:0345005000" class="svc-card">
+        <div class="ph">FOTOGRAFIJA - VOZILO DOK JE TVOJE NA SERVISU</div>
+        <div class="svc-label">
+          <div><h3>Dok je tvoj auto na servisu</h3><p>Bez pauze u vožnji</p></div>
+          <span class="arrow-sm"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DVE TRAKE -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="banner-2">
+      <div class="banner banner-blue">
+        <div class="banner-txt">
+          <h3>Treba ti auto za sutra?</h3>
+          <p>Pozoveš, kažeš termin, i vozilo te čeka spremno.</p>
+          <a href="tel:0345005000" class="btn btn-sm">
+            Pozovi za cenu
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="ph">FOTOGRAFIJA VOZILA</div>
+      </div>
+      <div class="banner banner-yellow">
+        <div class="banner-txt">
+          <h3>Treba ti auto na duže?</h3>
+          <p>Za dugoročni najam dogovaramo posebne uslove.</p>
+          <a href="tel:0345005000" class="btn btn-white btn-sm">
+            Pozovi za cenu
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="ph">FOTOGRAFIJA VOZILA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENZIJE -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="chip">
+      <span class="avatars"><span></span><span></span><span></span></span>
+      Recenzije
+    </div>
+    <h2 style="margin-bottom:32px;">Šta kažu klijenti</h2>
+    <div class="rev-grid">
+      <article class="rev-card">
+        <h3>NASLOV RECENZIJE</h3>
+        <div class="ph">MESTO ZA RECENZIJU KLIJENTA</div>
+        <div class="rev-foot">
+          <div class="rev-person">
+            <span class="ava"></span>
+            <span><strong>Ime klijenta</strong><span>Kragujevac</span></span>
+          </div>
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          </div>
+        </div>
+      </article>
+      <article class="rev-card">
+        <h3>NASLOV RECENZIJE</h3>
+        <div class="ph">MESTO ZA RECENZIJU KLIJENTA</div>
+        <div class="rev-foot">
+          <div class="rev-person">
+            <span class="ava"></span>
+            <span><strong>Ime klijenta</strong><span>Kragujevac</span></span>
+          </div>
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          </div>
+        </div>
+      </article>
+      <article class="rev-card">
+        <h3>NASLOV RECENZIJE</h3>
+        <div class="ph">MESTO ZA RECENZIJU KLIJENTA</div>
+        <div class="rev-foot">
+          <div class="rev-person">
+            <span class="ava"></span>
+            <span><strong>Ime klijenta</strong><span>Kragujevac</span></span>
+          </div>
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#70f46d" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SAVETI -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Saveti pre iznajmljivanja</h2>
+        <p>Šta da proveriš pre nego što potpišeš ugovor</p>
+      </div>
+      <div class="sec-actions">
+        <a href="tel:0345005000" class="btn btn-sm">
+          Vidi sve
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="news-split">
+      <a href="#" class="news-big">
+        <div class="ph">FOTOGRAFIJA ZA GLAVNI TEKST</div>
+        <div class="news-big-txt">
+          <h3>NASLOV GLAVNOG TEKSTA</h3>
+          <p>DATUM OBJAVE</p>
+        </div>
+      </a>
+      <div class="news-list">
+        <a href="#" class="news-item">
+          <div class="ph">SLIKA</div>
+          <div>
+            <h3>NASLOV TEKSTA 1</h3>
+            <p>DATUM OBJAVE</p>
+          </div>
+        </a>
+        <a href="#" class="news-item">
+          <div class="ph">SLIKA</div>
+          <div>
+            <h3>NASLOV TEKSTA 2</h3>
+            <p>DATUM OBJAVE</p>
+          </div>
+        </a>
+        <a href="#" class="news-item">
+          <div class="ph">SLIKA</div>
+          <div>
+            <h3>NASLOV TEKSTA 3</h3>
+            <p>DATUM OBJAVE</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USKORO -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Uskoro u ponudi</h2>
+        <p>Vozila koja ulaze u vozni park</p>
+      </div>
+      <div class="sec-actions">
+        <button type="button" class="btn-round" aria-label="Prethodno">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="btn-round" aria-label="Sledeće">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="soon-grid">
+      <div class="soon-card">
+        <div class="ph">FOTOGRAFIJA VOZILA</div>
+        <h3>NAZIV VOZILA</h3>
+        <p>DATUM DOLASKA</p>
+      </div>
+      <div class="soon-card">
+        <div class="ph">FOTOGRAFIJA VOZILA</div>
+        <h3>NAZIV VOZILA</h3>
+        <p>DATUM DOLASKA</p>
+      </div>
+      <div class="soon-card">
+        <div class="ph">FOTOGRAFIJA VOZILA</div>
+        <h3>NAZIV VOZILA</h3>
+        <p>DATUM DOLASKA</p>
+      </div>
+      <div class="soon-card">
+        <div class="ph">FOTOGRAFIJA VOZILA</div>
+        <h3>NAZIV VOZILA</h3>
+        <p>DATUM DOLASKA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZELENA TRAKA -->
+<section class="section-pad">
+  <div class="wrap">
+    <div class="block block-green">
+      <div class="app-split">
+        <div>
+          <h2>Vozilo za tvoj termin, jedan poziv daleko</h2>
+          <p>Reci kad ti treba auto i na koliko dugo. Ostalo rešavamo mi, a ti dobijaš cenu i termin preuzimanja odmah.</p>
+          <a href="tel:0345005000" class="btn">
+            Pozovi 034/500-500
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="ph">FOTOGRAFIJA VOZNOG PARKA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="section-pad" id="kontakt">
   <div class="wrap">
-    <div class="block block-surface">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="footer-logo">
-            <img src="assets/logo.png" alt="Expert Rent a Car logo">
+    <div class="block block-dark">
+      <div class="news-row">
+        <h2>Ostavi broj i javljamo se sa cenom za tvoj termin</h2>
+        <form class="news-form" action="tel:0345005000" method="get">
+          <label class="inp" for="tel-upit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            <input id="tel-upit" type="tel" placeholder="Tvoj broj telefona">
+          </label>
+          <button type="submit" class="btn">Pošalji</button>
+        </form>
+      </div>
+
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <img src="assets/logo.png" alt="Expert Rent a Car logo">
+          <div class="row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70f46d" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Kragujevac, Srbija
           </div>
-          <p>Iznajmljivanje vozila u Kragujevcu, kratkoročno i dugoročno. Bez skrivenih troškova.</p>
+          <div class="row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70f46d" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
+            Radnim danima 08-17
+          </div>
+          <div class="row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70f46d" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            info@expertrentacar.rs
+          </div>
+          <div class="foot-call">
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>
+              <small>Treba ti pomoć? Pozovi</small>
+              <a href="tel:0345005000"><strong>034/500-500</strong></a>
+            </span>
+          </div>
         </div>
-        <div class="footer-col">
-          <h4>Kontakt</h4>
-          <a href="tel:0345005000">034/500-500</a>
-          <a href="mailto:info@expertrentacar.rs">info@expertrentacar.rs</a>
-          <p>Kragujevac, Srbija</p>
-        </div>
-        <div class="footer-col">
-          <h4>Stranica</h4>
-          <a href="#problem">Zašto ti treba</a>
+
+        <div class="foot-col">
+          <h4>Expert</h4>
           <a href="#vozila">Vozni park</a>
-          <a href="#ponuda">Ponuda</a>
+          <a href="#tipovi">Tipovi vozila</a>
+          <a href="#kako">Kako funkcioniše</a>
+          <a href="#usluge">Usluge</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+        <div class="foot-col">
+          <h4>Najam</h4>
+          <a href="tel:0345005000">Kratkoročni najam</a>
+          <a href="tel:0345005000">Dugoročni najam</a>
+          <a href="tel:0345005000">Najam za firme</a>
+          <a href="tel:0345005000">Vozilo za turiste</a>
+          <a href="tel:0345005000">Zamensko vozilo</a>
+        </div>
+        <div class="foot-col">
+          <h4>Uslovi</h4>
+          <a href="tel:0345005000">Šta ulazi u cenu</a>
+          <a href="tel:0345005000">Preuzimanje i vraćanje</a>
+          <a href="tel:0345005000">Potrebna dokumenta</a>
+          <a href="tel:0345005000">Otkazivanje</a>
+        </div>
+        <div class="foot-col">
+          <h4>Podrška</h4>
+          <a href="tel:0345005000">Pozovi nas</a>
+          <a href="mailto:info@expertrentacar.rs">Pošalji mejl</a>
+          <a href="#kako">Kako rezervišeš</a>
+          <a href="#marke">Marke vozila</a>
         </div>
       </div>
 
-      <div class="ps-box">
-        <p><strong>P.S.</strong> Pozovi i reci mi kad ti treba vozilo, kratko ili duže - cena je jasna od prve rečenice, bez skrivenih troškova. Expert Rent a Car je u Kragujevcu, na telefonu, spreman da ti pripremi auto za tvoj termin.</p>
-      </div>
-
-      <div class="footer-bottom">
+      <div class="foot-bottom">
         <p>&copy; 2024 Expert Rent a Car. Sva prava zadržana.</p>
-        <p>Kragujevac, Srbija</p>
+        <div class="socials">
+          <span class="lbl">Prati nas</span>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 3h-2a4 4 0 0 0-4 4v3H7v4h2v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2z" stroke-linejoin="round"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor" stroke="none"/></svg></a>
+        </div>
       </div>
     </div>
   </div>
@@ -854,22 +2175,20 @@
   var btn = document.getElementById('hamburgerBtn');
   var menu = document.getElementById('mobileMenu');
   var header = document.getElementById('siteHeader');
+
   btn.addEventListener('click', function(){
     var isOpen = menu.classList.toggle('open');
-    header.classList.toggle('menu-open', isOpen);
     btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
-  var mobileLinks = menu.querySelectorAll('a');
-  mobileLinks.forEach(function(link){
+  menu.querySelectorAll('a').forEach(function(link){
     link.addEventListener('click', function(){
       menu.classList.remove('open');
-      header.classList.remove('menu-open');
       btn.setAttribute('aria-expanded', 'false');
     });
   });
 
   function onScroll(){
-    if(window.scrollY > 60){
+    if(window.scrollY > 240){
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
@@ -877,6 +2196,13 @@
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive:true });
+
+  document.querySelectorAll('.search-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.search-tab').forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+    });
+  });
 </script>
 
 </body>
